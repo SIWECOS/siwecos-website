@@ -106,7 +106,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
         <dd>
             <?php if($customFields["veranstaltungsort"]->value): ?>
                 <?php if($customFields["veranstaltungsort-link"]->value): ?>
-                    <a href="<?php echo $customFields["veranstaltungsort-link"]->rawValue; ?>" target="_blank" rel="noopener noreferrer">
+                    <a href="<?php echo $customFields["veranstaltungsort-link"]->rawvalue; ?>" target="_blank" rel="noopener noreferrer">
                 <?php endif; ?>
                 <?php echo $customFields["veranstaltungsort"]->value; ?>
                 <?php if($customFields["veranstaltungsort-link"]->value): ?>

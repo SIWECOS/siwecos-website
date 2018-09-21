@@ -76,7 +76,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                     <?php if($customFields["veranstaltungsort"]->value): ?>
                         <br />
                         <?php if($customFields["veranstaltungsort-link"]->value): ?>
-                        <a class="eventlist__location" href="<?php echo $customFields["veranstaltungsort-link"]->rawValue; ?>" target="_blank" rel="noopener noreferrer">
+                        <a class="eventlist__location" href="<?php echo $customFields["veranstaltungsort-link"]->rawvalue; ?>" target="_blank" rel="noopener noreferrer">
                         <?php endif; ?>
                             <?php echo $customFields["veranstaltungsort"]->value; ?>
                         <?php if($customFields["veranstaltungsort-link"]->value): ?>
