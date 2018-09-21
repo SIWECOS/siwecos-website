@@ -1,0 +1,78 @@
+@include critical(false) {
+    .cert {
+      &__header, &__footer {
+        background: $red;
+        text-align: center;
+        padding: 20px;
+
+        h3 {
+          text-transform: uppercase;
+          color: white;
+          margin: 0;
+        }
+      }
+
+      &__footer {
+        background: black;
+
+        h3 {
+          text-transform: none;
+        }
+
+        a {
+          color: white;
+        }
+      }
+
+      &__main {
+        @include flex_row_space;
+        background-position: center;
+        background-size: 60% auto;
+        background-repeat: no-repeat;
+
+        .cert__certscore--1 &,.cert__certscore--2 &,.cert__certscore--3 & {
+          background-image: url("../img/image_check_400x400.png");
+        }
+
+        .cert__certscore--4 &,.cert__certscore--5 &,.cert__certscore--6 &,.cert__certscore--7 & {
+          background-image: url("../img/image_check_yellow_400x400.png");
+        }
+
+        .cert__certscore--8 &,.cert__certscore--9 &,.cert__certscore--10 & {
+          background-image: url("../img/image_check_green_400x400.png");
+        }
+
+        dt, h4 {
+          border-bottom: 1px solid $basefontcolor;
+        }
+
+        h4, dl {
+          margin-top: 0;
+        }
+
+        dt {
+          margin-bottom: 5px;
+        }
+
+        h4 {
+          font-size: 1rem;
+          font-weight: bold;
+          color: $basefontcolor;
+        }
+      }
+
+      &__data {
+        width: 100%;
+      }
+
+      @media screen and (min-width: $viewport_tablet_portrait) {
+        &__data, &__text {
+          width: 48%;
+        }
+
+        &__main {
+          background-size: auto 80%;
+        }
+      }
+    }
+}
