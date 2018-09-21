@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="content" method="upgrade">
+    <name>SIWECOS Seal of Trust</name>
+    <creationDate>2018-08-31</creationDate>
+    <author>Stephan Hradek</author>
+    <authorEmail>Stephan.Hradek@eco.de</authorEmail>
+    <authorUrl>https://www.eco.de/</authorUrl>
+    <copyright>2018</copyright>
+    <license>tbd.</license>
+    <version>0.0.3</version>
+    <description>Plugin to display a certificate page for Siwecos
+        as well as providing the seal</description>
+    <files>
+        <filename plugin="sealoftrust">sealoftrust.php</filename>
+        <filename>getdate.php</filename>
+        <filename>seal.php</filename>
+        <filename>seal.js</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="date_format" type="combo"
+                    label="date format"
+                    default="y-m-d H:i:s e"
+                    size="20"
+                    description="format of the date on the certificate page">
+                    <option value="Y-m-d H:i:s e">Y-m-d H:i:s e (ISO)</option>
+                    <option value="d.m.y H:i:s e">d.m.y (german)</option>
+                    <option value="d.m.y G:i:s a e">d.m.y (british)</option>
+                    <option value="d/m/y G:i:s a e">d/m/y (british)</option>
+                    <option value="m/y/d G:i:s a e">m/y/d (US)</option>
+                </field>
+                <field name="domainscan_url" type="text"
+                    description="The url under which the scan result can be retrieved"
+                    label="domainscan url"
+                    default="https://bla.staging2.siwecos.de/api/v1/domainscan?domain="
+                />
+                <field name="lastscan_url" type="text"
+                    description="The url under which the last scan date can be retrieved"
+                    label="lastscan url"
+                    default="https://ca.staging2.siwecos.de/api/v1/lastscan"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
