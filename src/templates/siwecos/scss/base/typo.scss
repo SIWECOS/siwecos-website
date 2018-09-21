@@ -1,6 +1,6 @@
 @include critical(true) {
   body {
-    font-family: $basefont;
+    font-family: 'Arial', 'sans-serif';
     font-size: 13px;
     font-weight: 300;
   }
@@ -204,6 +204,10 @@
     url('../fonts/roboto-condensed-v16-latin-300.woff') format('woff'), /* Modern Browsers */
     url('../fonts/roboto-condensed-v16-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
     url('../fonts/roboto-condensed-v16-latin-300.svg#RobotoCondensed') format('svg'); /* Legacy iOS */
+  }
+
+  body {
+    font-family: $basefont;
   }
 
   blockquote {
