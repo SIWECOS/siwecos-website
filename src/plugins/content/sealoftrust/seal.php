@@ -1,7 +1,9 @@
 <?php
 include "./getdate.php";
 $scandate= get_scan_date();
+
 header('Content-type: image/svg+xml');
+header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + (60 * 60 * 12)));
 ?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg4578" viewBox="0 0 262.365 100.988">
   <defs>
