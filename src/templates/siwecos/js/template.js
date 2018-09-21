@@ -187,10 +187,9 @@ window.logoutSpa= function () {
   return true;
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-  window.login_announce(
-    window.sessionStorage.getItem('access_token') !== null ||
-    window.localStorage.getItem('access_token') !== null
-  );
-  document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
-});
+window.login_announce(
+  window.sessionStorage.getItem('access_token') !== null ||
+  window.localStorage.getItem('access_token') !== null
+);
+
+document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
