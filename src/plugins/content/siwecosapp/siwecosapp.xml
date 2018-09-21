@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.2" type="plugin" group="content" method="upgrade">
+    <name>SIWECOS Main App</name>
+    <creationDate>2018-09-21</creationDate>
+    <author>David Jardin</author>
+    <authorEmail>david.jardin@cms-garden.org</authorEmail>
+    <authorUrl>https://www.cms-garden.org/</authorUrl>
+    <copyright>2018</copyright>
+    <license>GPLv2 or later</license>
+    <version>0.0.1</version>
+    <description>Plugin to display the siwecos SPA app</description>
+    <files>
+        <filename plugin="siwecosapp">siwecosapp.php</filename>
+    </files>
+</extension>
