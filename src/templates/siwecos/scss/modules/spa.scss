@@ -1,0 +1,71 @@
+@include critical(false) {
+  #UserRegistration ul, ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  #app .navbar.navbar-default {
+    display: none;
+  }
+
+  #loginform span::before, #UserRegistration span::before, #UserAccount span::before, #domainform span::before, #forgotform span::before, #resetform span::before {
+    content: "✘ - ";
+  }
+  #loginform span, #UserRegistration span, #UserAccount span, #domainform span, #forgotform span, #resetform span {
+    color: red;
+    line-height: 3em;
+  }
+  #salutation, #org_size {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    padding: 0.25em 1em .25em 1em;
+    margin-bottom: .25em;
+  }
+  [for="domain"], [for="email"], [for="password"], [for="password_repeat"], [for="first_name"], [for="last_name"], [for="address"], [for="plz"], [for="email"], [for="city"], [for="phone"], [for="org_name"], [for="org_industry"], [for="org_address"], [for="org_plz"], [for="org_city"], [for="org_phone"], [for="newpassword"], [for="newpassword_repeat"]{
+    @extend .visuallyhidden;
+  }
+  #UserRegistration h4 {
+    margin-bottom: 5px;
+  }
+  #UserRegistration li:last-child{
+    margin-bottom: 1em;
+  }
+  #loginform > p:nth-child(1),
+  #loginform > p:nth-child(2){
+    margin: 0;
+  }
+
+  ul .domain-item-actionlist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .domain-results-item {
+    border-bottom: thin solid lightgrey;
+    padding-bottom: 1em;
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0 0 25px 0!important;
+  }
+
+  #domains-scanners-list {
+    float: left;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  #UserAccount ul, ol #UserRegistration ul, ol {
+    padding: 0;
+    list-style: none;
+  }
+}

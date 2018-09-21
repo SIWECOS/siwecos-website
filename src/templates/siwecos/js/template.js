@@ -184,6 +184,9 @@ window.login_announce= function(data) {
 window.logoutSpa= function () {
   window.sessionStorage.removeItem("access_token");
   window.localStorage.removeItem("access_token");
+
+  window.login_announce(null);
+
   return true;
 };
 

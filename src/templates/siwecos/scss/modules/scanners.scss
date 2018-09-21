@@ -1,0 +1,122 @@
+@include critical(false) {
+  .freescanform {
+    .freescan-domain label {
+      @extend .visuallyhidden;
+    }
+  }
+
+  .freescanwaitmessage {
+    font-size: 1.2rem;
+
+    p::before {
+      content: url("../img/spinner.gif");
+      position: relative;
+      left: -6px;
+      top: 2px;
+    }
+  }
+
+  .scanner-data {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .scanner-item-data > a {
+    display: inline-block;
+    height: 14px;
+    text-indent: -9000px;
+    width: 14px;
+    margin-left: 4px;
+  }
+
+  .scanner-item-data > a, .scanner-score-information {
+    background: url(data-uri('src/templates/siwecos/img/info.png'));;
+  }
+
+  .scanner-score-information {
+    display: block;
+    height: 16px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    right: -10px;
+    text-indent: -9000px;
+    width: 16px;
+    top: -16px;
+  }
+
+  .scanner-check-item-data {
+    .btn-primary, .scanner-item-data .btn-primary {
+      background: transparent;
+      box-shadow: none;
+      color: black !important;
+      font-size: 12px;
+      padding: 0;
+      margin-bottom: 2px;
+      min-width: 0;
+    }
+  }
+
+  .scanner-check-wrapper {
+    padding-left: 30px;
+  }
+  .scanner-content {
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+    .round-check.score-green::before, .round-check.score-yellow::before, .round-check.score-orange::before, .round-check.score-red::before {
+      content: "";
+      height: 18px;
+      width: 30px;
+      display: inline-block;
+      margin-left: -30px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+
+    .round-check.score-red::before {
+      background-image: url("../img/scanner-gauge_red2.svg");
+    }
+
+    .round-check.score-green::before {
+      background-image: url("../img/scanner-gauge_green2.svg");
+    }
+    .round-check.score-yellow::before {
+      background-image: url("../img/scanner-gauge_yellow2.svg");
+    }
+  }
+
+  .scanner-check-item-description {
+    border-left: 1px dotted lightgrey;
+    padding-left: 1em;
+    margin-bottom: 2em;
+  }
+
+  .scanner-check-item-description-report {
+    font-size: 12px;
+    margin-top: 0;
+  }
+
+
+  @media screen and (min-width: $viewport_tablet_portrait) {
+    .scanner-check-item-data {
+      > div:first-child {
+        width: 70%;
+        float: left;
+      }
+
+      > div:nth-child(2) {
+        width: 30%;
+        float: left;
+        text-align: right;
+      }
+    }
+
+    .scanner-check-wrapper {
+      width: 80%;
+      float: left;
+    }
+  }
+
+}
