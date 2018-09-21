@@ -1,0 +1,32 @@
+@include critical(false) {
+  figure.partner {
+    margin-bottom: 2rem;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 80%;
+    }
+  }
+
+  @media screen and (min-width: $viewport_tablet_portrait) {
+    figure.partner {
+      overflow: hidden;
+      img {
+        float: left;
+        width: 20%;
+      }
+
+      figcaption {
+        float: left;
+        width: 77%;
+        margin-left: 3%;
+      }
+
+      h3 {
+        margin-top: 0;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

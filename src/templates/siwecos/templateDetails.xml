@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
+<extension type="template" version="3.0.0">
+	<name>SIWECOS</name>
+	<version>1.0.0</version>
+	<description></description>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<author>David Jardin - djumla GmbH</author>
+	<authoremail>d.jardin@djumla.de</authoremail>
+	<copyright>Copyright (C) 2018 David Jardin. All rights reserved.</copyright>
+	<creationDate>26-Apr-2018</creationDate>
+	<files>
+		<folder>css</folder>
+		<folder>img</folder>
+		<folder>js</folder>
+		<folder>scss</folder>
+		<folder>font</folder>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>template_preview.png</filename>
+		<filename>component.php</filename>
+		<filename>favicon.ico</filename>
+	</files>
+	<positions>
+		<position>main-top</position>
+		<position>main-bottom</position>
+		<position>footer</position>
+		<position>mainnav</position>
+		<position>search</position>
+		<position>sidebar</position>
+		<position>language</position>
+	</positions>
+</extension>

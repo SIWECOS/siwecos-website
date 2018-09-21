@@ -1,0 +1,29 @@
+@include critical(false) {
+  .footernav {
+    text-align: center;
+    font-size: 0.8em;
+
+    a:link, a:visited, a:active {
+      text-decoration: none;
+    }
+
+    ul {
+      padding: 10px;
+      margin-bottom: 0;
+    }
+
+    li {
+      display: inline;
+
+      &:before {
+        content: " · ";
+      }
+
+      &:first-child {
+        &:before {
+          content: "";
+        }
+      }
+    }
+  }
+}

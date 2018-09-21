@@ -1,0 +1,5 @@
+/node_modules
+/src/templates/siwecos/css
+/.idea
+.DS_Store
+/package-lock.json

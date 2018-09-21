@@ -1,0 +1,47 @@
+// Variables
+$basefont: 'Roboto', sans-serif;
+$condensedfont: 'Roboto Condensed', sans-serif;
+$offset: calc((100vw - 1040px) / 2);
+
+$viewport_phone: 480px;
+$viewport_tablet_portrait: 768px;
+$viewport_desktop: 1040px;
+$viewport_desktop_large: 1280px;
+
+$red: #c31622;
+$darkred: #8a0000;
+$lightred: #d55b64;
+$basefontcolor: #020000;
+$brightgrey: #fcfcfc;
+$darkgrey: #cbcccc;
+
+// Mixins
+
+@mixin font_smoothing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@mixin appereance($value) {
+	-webkit-appearance: $value;
+	-moz-appearance:    $value;
+	appearance:         $value;
+}
+
+@mixin transition($duration) {
+	-webkit-transition: $duration ease-in-out;
+	-moz-transition: $duration ease-in-out;
+	-o-transition: $duration ease-in-out;
+	transition: $duration ease-in-out;
+}
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+	@if $inset {
+		-webkit-box-shadow:inset $top $left $blur $color;
+		-moz-box-shadow:inset $top $left $blur $color;
+		box-shadow:inset $top $left $blur $color;
+	} @else {
+		-webkit-box-shadow: $top $left $blur $color;
+		-moz-box-shadow: $top $left $blur $color;
+		box-shadow: $top $left $blur $color;
+	}
+}

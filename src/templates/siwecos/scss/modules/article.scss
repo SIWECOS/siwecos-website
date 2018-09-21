@@ -1,0 +1,8 @@
+@include critical(true) {
+  .item-page > .item-image {
+    text-align: center;
+    img {
+      max-height: 80px;
+    }
+  }
+}

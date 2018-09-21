@@ -1,0 +1,16 @@
+@include critical(false) {
+  .matrixtable {
+    tr:nth-child(2n) {
+      background: #ddd;
+    }
+
+    td[colspan] {
+      background: $lightred;
+      color: white;
+    }
+
+    &__colshort {
+      width: 18px;
+    }
+  }
+}

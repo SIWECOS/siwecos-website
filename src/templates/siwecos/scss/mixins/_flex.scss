@@ -1,0 +1,145 @@
+@mixin display_flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin display_inline_flex {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex_direction($direction) {
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin flex_wrap {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin justify_space {
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@mixin justify_around {
+  -ms-flex-pack: justify;
+  justify-content: space-around;
+}
+
+@mixin justify_center {
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin justify_start {
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+@mixin order($order) {
+  -ms-flex-order: $order;
+  order: $order;
+}
+
+@mixin flex_align($alignment) {
+  -ms-flex-align: $alignment;
+  align-items: $alignment;
+}
+
+@mixin flex_align_start {
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+@mixin align_self_start {
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+
+@mixin align_self_end {
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+@mixin align_self_center {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+@mixin flex_row_start {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include flex_align(center);
+}
+
+@mixin flex_row_space {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include justify_space;
+  @include flex_align(center);
+}
+
+@mixin flex_row_space_around {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include justify_around;
+  @include flex_align(center);
+}
+
+@mixin flex_row_center {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include justify_center;
+  @include flex_align(center);
+}
+
+@mixin flex_row_stretch {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include flex_align(stretch);
+}
+
+@mixin flex_row_space_stretch {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include justify_space;
+  @include flex_align(stretch);
+}
+
+@mixin flex_row_center_strech {
+  @include display_flex;
+  @include flex_direction(row);
+  @include flex_wrap;
+  @include justify_center;
+  @include flex_align(stretch);
+}
+
+@mixin flex_column_center {
+  @include display_flex;
+  @include flex_direction(column);
+  @include flex_wrap;
+  @include justify_center;
+  @include flex_align(center);
+}
+
+@mixin flex_column_center_strech {
+  @include display_flex;
+  @include flex_direction(column);
+  @include flex_wrap;
+  @include justify_center;
+  @include flex_align(stretch);
+}
+
+@mixin flex_column_strech {
+  @include display_flex;
+  @include flex_direction(column);
+  @include flex_wrap;
+  @include flex_align(stretch);
+}
