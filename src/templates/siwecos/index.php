@@ -40,7 +40,7 @@ if (isset($this->_script['text/javascript']))
 <!--[if gt IE 8]><!--> <html class="no-js" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
     <jdoc:include type="head" />
     <style>
         <?php echo file_get_contents(dirname(__FILE__) . "/css/critical.css"); ?>
@@ -53,10 +53,10 @@ if (isset($this->_script['text/javascript']))
                 <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/img/logo.svg" alt="<?php echo JText::_('TPL_SIWECOS_BACKTOHOME'); ?>">
             </a>
             <div class="headerbar__supportbox">
-                <a href="http://www.it-sicherheit-in-der-wirtschaft.de/" target="_blank">
+                <a href="http://www.it-sicherheit-in-der-wirtschaft.de/" target="_blank" rel="noopener noreferrer">
                     <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/img/IT-Sicherheit.png" alt="<?php echo JText::_('TPL_SIWECOS_TOITSICHERHEITHOMEPAGE'); ?>">
                 </a>
-                <a href="http://www.bmwi.de/" target="_blank">
+                <a href="http://www.bmwi.de/" target="_blank" rel="noopener noreferrer">
                     <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/img/BMWi_4C_Gef_de.png" alt="<?php echo JText::_('TPL_SIWECOS_TOBMWIHOMEPAGE'); ?>">
                 </a>
             </div>
