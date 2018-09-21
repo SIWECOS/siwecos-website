@@ -1,0 +1,148 @@
+SIWECOS Seal of Trust
+=====================
+:lang: de
+:encoding: utf-8
+:experimental: yes
+
+für Joomla!
+-----------
+
+Installation auf dem siwecos SERVER
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Das Plugin wird wie jedes andere Plugin auch, in Joomla installiert und aktiviert.
+
+menu:Erweiterungen[Verwalten > Installieren]
+
+menu:Erweiterungen[Verwalten > Verwalten > Aktivieren]
+
+Anschließend muß es konfiguriert werden
+
+menu:Erweiterungen[Plugins > SIWECOS Seal of Trust]
+
+Hier sind mindestens die URLs der Backends zu konfigurieren.
+
+Damit sollte das Siegel bereits über die URL
+
+`<Basisurl-Joomla>/plugins/content/sealoftrust/seal.php/<domain>/<format>`
+
+ansprechbar sein.
+
+Die Datei `seal.js` muß  dem Nutzer als Download zur Verfügung gestellt werden, damit er sie in seine Seite einbinden kann.
+
+Die URL ist `<Basisurl-Joomla>/plugins/content/sealoftrust/seal.js`
+
+
+Erstellen der Landingpage
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Damit das Siegel des Kunden auf eine "Zertifikatsseite" bei uns führt, müssen wir eine Seite "scanned-by-siwecos" anlegen.
+Auf dieser Seite können die folgenden Shortcodes verwendet werden:
+
+.Shortcodes
+|===
+| Shortcode / Attribute | Funktion
+
+| [siwecos ...] ... [/siwecos] |
+Umklammert den Bereich in dem die folgenden Shortcodes gelten.
+
+| class=string |
+Bei Angabe von `class=` wird die Landingpage in ein `<div>` mit dieser CSS Klasse eingebettet.
+Der Parameter kann den Platzhalter %s oder %S enthalten. %s wird durch den ganzzahligen Score der Seite ersetzt.
+%S wird durch den ganzahligen Teil des Scores, geteilt durch 10 ersetzt.
+Es wird nicht gerundet.
+
+Beispiel: `class="Score_%S"` liefert bei Score 96 `class="Score_9"`
+
+| [domain] |
+Wird ersetzt durch die Domain des Kundenseite.
+
+| [url] |
+Wird ersetzt durch die komplette URL des Kunden.
+
+| [last ...] |
+Wird ersetzt durch das Datum des letzten Scans.
+
+| format=*string* |
+Ein optionaler Formatstring wie ihn https://secure.php.net/manual/de/function.date.php[date()] erwartet.
+
+| tz=*string* |
+Eine optionale Zeitzone, wie sie https://secure.php.net/manual/de/class.datetimezone.php[DateTimeZone()] definiert.
+
+| [score ...] |
+Der Gesamtscore des letzten Scans.
+
+| precision=*integer* |
+Eine optionale Ganzzahl, die die Stellen nach dem Komma angibt. Standard ist 0.
+
+| [unknown] ... [/unknown] |
+Der Inhalt dieses Shortcodes wird normalerweise **nicht** dargestellt.
+Wurde jedoch eine unbekannte Domain übergeben, wird **nur** der Inhalt dieses Shortcodes dargestellt.
+Der gesamte andere Inhalt von `[siwecos]` ... `[/siwecos]` wird dann **nicht** dargestellt.
+
+| [domain] |
+Innerhalb von `[unknown]` ... `[/unknown]` kann von den SIWECOS-Shortcodes nur `[domain]` verwendet werden.
+
+|===
+
+Aktivieren der Landingpage
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Nachdem die Landingpage erstellt wurde, empfiehlt es sich, ihr eine kurze URL zu geben.
+Dazu wird ein Menüeintrag für die Seite erstellt:
+
+* menu:Menüs[Verwalten > Neues Menü]
+** `Titel`: Verstecktes Menü
+** `Menütyp`: Verstecktes Menü
+** `Beschreibung`: Menü für Links die nicht dargestellt werden sollen
+** `Bereich`: Site
+** btn:[Speichern & Schließen]
+* menu:Menüs[Verstecktes Menü > Neuer Menüeintrag]
+** `Menütitel`: scanned-by-siwecos
+** menu:Menüeintragstyp[Auswählen]
+*** menu:Beiträge[Einzelner Beitrag]
+** menu:Beitrag auswählen[Auswählen]
+*** Landingpage / Zertifikatsseite auswählen
+** btn:[Speichern & Schließen]
+* menu:System[Konfiguration]
+** `Suchmaschinen-freundliche` URL: Ja
+** `URL-Rewrite nutzen`: Ja
+
+CAUTION: Warnung bei URL-Rewrite beachten
+
+Nun sollte die "Zertifikatsseite" unter der url
+
+`<Basisurl-Joomla>/scanned-by-siwecos?data-siwecos=domain-des-kunden`
+
+erreichbar sein.
+
+Installation auf Kundenseite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Um das Siegel auf einer Kundenseite einzubinden muß der Kunde zunächst die `seal.js` herunterladen und auf seinem Server ablegen.
+
+Anschließend muß er auf seiner Hauptseite, oder wo immer er das Siegel darstellen möchte, Folgendes eintragen:
+
+[source,HTML]
+-----------------------------------------------------------------
+<a href="http://siwecos.de/scanned-by-siwecos?data-siwecos=domain-des-kunden">
+  <svg width="150" height="58" id="siwecos-seal" data-format="d.m.y"></svg>
+  <script src="Pfad zum seal.js"></script>
+</a>
+-----------------------------------------------------------------
+
+Damit führt ein Klick auf das Siegel direkt zu unserer "Zertifikatsseite".
+
+Dabei ist
+
+* `width` die Breite, in der das Siegel erscheinen soll.
+* `data-siwecos` die Domain des Nutzers ohne http/https.
+* `data-format` (optional) das gewünschte Format.
+* `src` der Pfad über den die Kopie des Javascripts erreichbar ist.
+
+Das Format setzt sich idealerweise aus 5 Zeichen zusammen. Die empfohlenen Formate sind:
+
+* `d.m.y` für das gewohnte deutsche und britische Format.
+* `d/m/y` für ein anderes britisches Format.
+* `y-m-d` für das ISO-8601 Format.
+* `m/d/y` für US-amerikanisches Format.
