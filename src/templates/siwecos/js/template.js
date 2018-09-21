@@ -164,3 +164,33 @@ Array.from(document.querySelectorAll('.headerbar__mainnav > ul > li > a')).forEa
     }
   })
 })
+
+// Script for accountbox
+window.login_announce= function(data) {
+  var box= document.getElementById('accountbox');
+  if( box === null ) {
+    console.log('no accountbox found');
+    return;
+  }
+  if(data === null || data === false) {
+    box.classList.remove('accountbox--loggedoin');
+    box.classList.add('accountbox--loggedoff');
+  } else {
+    box.classList.remove('accountbox--loggedoff');
+    box.classList.add('accountbox--loggedon');
+  }
+};
+
+window.logoutSpa= function () {
+  window.sessionStorage.removeItem("access_token");
+  window.localStorage.removeItem("access_token");
+  return true;
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+  window.login_announce(
+    window.sessionStorage.getItem('access_token') !== null ||
+    window.localStorage.getItem('access_token') !== null
+  );
+  document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
+});

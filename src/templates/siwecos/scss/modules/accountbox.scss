@@ -1,0 +1,43 @@
+@include critical(true) {
+  .accountbox {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    a {
+      text-decoration: none;
+      color: $basefontcolor;
+    }
+
+    a:before {
+      content: " ⚪ ";
+      color: #fb544a;
+      vertical-align: 1px;
+    }
+
+    &--loggedoff {
+      .accountbox__link {
+        &--loggedin {
+          display: none;
+        }
+      }
+    }
+
+    &--loggedon {
+      .accountbox__link {
+        &--loggedoff {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@include critical(false) {
+
+}
