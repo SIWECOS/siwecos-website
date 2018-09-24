@@ -14,10 +14,9 @@ $lightred: #d55b64;
 $basefontcolor: #020000;
 $brightgrey: #fcfcfc;
 $darkgrey: #cbcccc;
-$buttoncolor: #26a69a;
+$buttoncolor: $red;
 
 // Mixins
-
 @mixin font_smoothing {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
