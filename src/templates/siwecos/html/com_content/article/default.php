@@ -25,6 +25,9 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Article">
 	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
+    <meta itemprop="author" content="SIWECOS.de" />
+    <meta itemprop="publisher" content="SIWECOS.de" />
+    <meta itemprop="datePublished" content=<?php echo JFactory::getDate($this->item->created_at)->toISO8601(); ?>" />
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<div class="page-header">
 		<h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -49,13 +52,13 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
     <?php if ($params->get('access-view')) : ?>
     <?php echo JLayoutHelper::render('joomla.content.full_image', $this->item); ?>
     <?php endif; ?>
-	<?php if ($params->get('show_title') || $params->get('show_author')) : ?>
+	<?php if ($params->get('show_title')) : ?>
 	<div class="page-header">
 		<?php if ($params->get('show_title')) : ?>
 			<h2 itemprop="headline">
 				<?php echo $this->escape($this->item->title); ?>
 			</h2>
-		<?php endif; ?>
+            <?php endif; ?>
 		<?php if ($this->item->state == 0) : ?>
 			<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
 		<?php endif; ?>
@@ -66,8 +69,10 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 			<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
 		<?php endif; ?>
 	</div>
-	<?php endif; ?>
-	<?php if (!$this->print) : ?>
+    <?php else: ?>
+        <meta itemprop="headline" content="<?php echo $this->escape($this->item->title); ?>" />
+    <?php endif; ?>
+    <?php if (!$this->print) : ?>
 		<?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
 			<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
 		<?php endif; ?>

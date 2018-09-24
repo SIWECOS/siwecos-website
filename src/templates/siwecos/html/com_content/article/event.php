@@ -81,7 +81,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
         <dt>
             <?php echo JText::_('TPL_SIWECOS_EVENTS_DATE'); ?>
         </dt>
-        <dd>
+        <dd itemprop="startDate" content="<?php echo JFactory::getDate($customFields['datum']->value)->toISO8601(); ?>">
             <?php echo JFactory::getDate($customFields["datum-von"]->value)->format("d.m.Y"); ?>
 
             <?php if($customFields["datum-bis"]->value && JFactory::getDate($customFields["datum-von"]->value)->format("d.m.Y") !== JFactory::getDate($customFields["datum-bis"]->value)->format("d.m.Y")): ?>
@@ -103,7 +103,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
         <dt>
             <?php echo JText::_('TPL_SIWECOS_EVENTS_LOCATION'); ?>
         </dt>
-        <dd>
+        <dd itemprop="location" itemscope itemtype="http://schema.org/Text">
             <?php if($customFields["veranstaltungsort"]->value): ?>
                 <?php if($customFields["veranstaltungsort-link"]->value): ?>
                     <a href="<?php echo $customFields["veranstaltungsort-link"]->rawvalue; ?>" target="_blank" rel="noopener noreferrer">
@@ -158,7 +158,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
     <?php if (isset ($this->item->toc)) :
         echo $this->item->toc;
     endif; ?>
-    <div itemprop="articleBody">
+    <div itemprop="description">
         <?php echo $this->item->text; ?>
     </div>
 
