@@ -169,7 +169,6 @@ Array.from(document.querySelectorAll('.headerbar__mainnav > ul > li > a')).forEa
 window.login_announce= function(data) {
   var box= document.getElementById('accountbox');
   if( box === null ) {
-    console.log('no accountbox found');
     return;
   }
   if(data === null || data === false) {
@@ -195,4 +194,6 @@ window.login_announce(
   window.localStorage.getItem('access_token') !== null
 );
 
-document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
+if(document.getElementById("accountbox__logoff")) {
+  document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
+}
