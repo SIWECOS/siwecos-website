@@ -1,6 +1,6 @@
 @include critical(true) {
   body {
-    font-family: 'Arial', 'sans-serif';
+    font-family: $basefont;
     font-size: 13px;
     font-weight: 300;
   }
@@ -257,5 +257,13 @@
     margin-left: 1em;
     padding-left: 1em;
     border-left: 1px solid #aaaaaa;
+  }
+  .centerimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .centertext {
+    text-align: center;
   }
 }

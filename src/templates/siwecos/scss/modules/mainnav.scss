@@ -11,6 +11,15 @@
     height: 100vh;
     overflow: scroll;
     font-family: $condensedfont;
+
+    a:link, a:visited, a:active {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+      display: block;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
   }
   @media screen and (min-width: $viewport_tablet_portrait) {
     .headerbar__mainnav {
@@ -18,7 +27,7 @@
       left: 0;
       width: auto;
       height: auto;
-
+      overflow: auto;
 
       a:link, a:visited, a:active {
         font-size: 14px;
@@ -71,15 +80,6 @@
   }
 
   .headerbar__mainnav {
-    a:link, a:visited, a:active {
-      text-decoration: none;
-      color: white;
-      padding: 10px;
-      display: block;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
     > ul {
       margin: 60px 0 0 0;
       padding: 0;
