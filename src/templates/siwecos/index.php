@@ -18,6 +18,28 @@ $this->direction = $doc->direction;
 // Generator tag
 $this->setGenerator(null);
 
+// Load critical CSS
+$criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
+
+// Generate CSP
+$cspRules = [
+    "default-src" => ["'self'"],
+    'connect-src' => ["'self'", "api.siwecos.de"],
+    'script-src' => ["'self'"],
+    'style-src' => ["'self'", "'unsafe-inline'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"],
+    'frame-src' => ["'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/"],
+    'img-src' => ["'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com", "https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com"]
+];
+
+$cspString = "";
+
+foreach ($cspRules as $cspType => $assets)
+{
+    $cspString .= $cspType . " " . implode(" ", $assets) . "; ";
+}
+
+$app->setHeader('Content-Security-Policy', $cspString);
+
 // Add Stylesheets
 unset($this->_scripts[$this->baseurl . '/media/system/js/caption.js']);
 unset($this->_scripts[$this->baseurl . '/media/jui/js/chosen.jquery.min.js']);
@@ -42,9 +64,7 @@ if (isset($this->_script['text/javascript']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
     <jdoc:include type="head" />
-    <style>
-        <?php echo file_get_contents(dirname(__FILE__) . "/css/critical.css"); ?>
-    </style>
+    <style><?php echo $criticalCss; ?></style>
 </head>
 <body class="<?php echo $pageclass ? htmlspecialchars($pageclass) : 'default'; ?>">
     <header>
