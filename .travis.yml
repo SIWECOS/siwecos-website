@@ -12,8 +12,8 @@ matrix:
 script:
   - composer selfupdate
   - composer install
-  - ./vendor/bin/phpcs --standard=Joomla src/modules/**/*.php
-  - ./vendor/bin/phpcs --standard=Joomla src/plugins/**/*.php
+  - ./vendor/bin/phpcs --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/modules/**/*.php
+  - ./vendor/bin/phpcs --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/plugins/**/*.php
 
 notifications:
   webhooks:
