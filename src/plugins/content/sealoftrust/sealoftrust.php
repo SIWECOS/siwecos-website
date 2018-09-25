@@ -20,12 +20,12 @@ class PlgContentSealoftrust extends JPlugin
     /**
      * Embed shortcode
      *
-     * @param   string  $context   context string
-     * @param   object  &$article  article object
-     * @param   object  &$params   params object
-     * @param   int     $page      page number
+     * @param   string  $context  context string
+     * @param   object  $article  article object
+     * @param   object  $params   params object
+     * @param   int     $page     page number
      *
-     * @return bool
+     * @return boolean
      */
     public function onContentPrepare($context, &$article, &$params, $page = 0)
     {
@@ -36,20 +36,20 @@ class PlgContentSealoftrust extends JPlugin
         }
 
         // Get the customer's domain
-        $user_domain = JFactory::getApplication()->input->get('data-siwecos', 'www.siwecos.de', 'cmd');
+        $userDomain = JFactory::getApplication()->input->get('data-siwecos', 'www.siwecos.de', 'cmd');
 
         // Get my required settings
-        $domainscan_url = $this->params->get('domainscan_url');
-        $date_format = $this->params->get('date_format');
+        $domainscanURL = $this->params->get('domainscan_url');
+            $dateFormat = $this->params->get('date_format');
 
         // Get the domain's scan result
         $client = JHttpFactory::getHttp();
-        $response = $client->get($domainscan_url . $user_domain);
+        $response = $client->get($domainscanURL . $userDomain);
 
         // Get the data
         $result = '';
 
-        if (false !== $response and $response->code === 200)
+        if (false !== $response && $response->code === 200)
         {
             $result = json_decode($response->body);
         }
@@ -57,9 +57,9 @@ class PlgContentSealoftrust extends JPlugin
         // Find the [siwecos] ... [/siwecos] shortcode and work on its content
         $article->text = preg_replace_callback(
             "/\[siwecos\b(.*?)\](.*?)\[\/siwecos\]/s",
-            function ($matches) use ($user_domain, $date_format, $result) {
+            function ($matches) use ($userDomain, $dateFormat, $result) {
                 // Replace the [domain]-shortcode beforehand.
-                $text = preg_replace('/\[domain\]/', $user_domain, $matches[2]);
+                $text = preg_replace('/\[domain\]/', $userDomain, $matches[2]);
 
                 if ('' === $result)
                 {
@@ -73,77 +73,78 @@ class PlgContentSealoftrust extends JPlugin
                 // Parse all siwecos shortcodes
                 $text = preg_replace_callback(
                     '/\[(last|score|url)\b(.*?)\]/',
-                    function ($matches) use ($result, $date_format) {
+                    function ($matches) use ($result, $dateFormat) {
                         switch ($matches[1])
                         {
-                        case 'last':
-                            extract(
-                                $this->shortcode_attributes(
-                                    [
-                                        "format" => $date_format,
-                                        "tz" => '',
-                                    ], $matches[2]
-                                )
-                            );
+                            case 'last':
+                                extract(
+                                    $this->shortcodeAttributes(
+                                        array(
+                                            "format" => $dateFormat,
+                                            "tz" => '',
+                                        ), $matches[2]
+                                    )
+                                );
 
-                            $lastScan = new DateTime(
-                                $result->{'lastScan'}->{'date'},
-                                new DateTimeZone($result->{'lastScan'}->{'timezone'})
-                            );
+                                $lastScan = new DateTime(
+                                    $result->{'lastScan'}->{'date'},
+                                    new DateTimeZone($result->{'lastScan'}->{'timezone'})
+                                );
 
-                            if ('' != $tz)
-                            {
-                                try
+                                if ('' != $tz)
                                 {
-                                    $lastScan->setTimezone(new DateTimeZone($tz));
+                                    try
+                                    {
+                                        $lastScan->setTimezone(new DateTimeZone($tz));
+                                    }
+                                    catch (Exception $e)
+                                    {
+                                        // Ggnore wrong timezone strings
+                                    }
                                 }
-                                catch (Exception $e)
-                                {
-                                    // Ggnore wrong timezone strings
-                                }
-                            }
 
-                            return $lastScan->format($format);
-                        case 'score':
-                            extract(
-                                $this->shortcode_attributes(
-                                    [
-                                        "precision" => 0
-                                    ], $matches[2]
-                                )
-                            );
+                                return $lastScan->format($format);
 
-                            return sprintf("%." . $precision . "f", round($result->{'Score'}, $precision));
-                        case 'url':
-                            return $result->{'domain'};
-                        default:
-                            return $matches[0];
+                            case 'score':
+                                extract(
+                                    $this->shortcodeAttributes(
+                                        array(
+                                            "precision" => 0
+                                        ), $matches[2]
+                                    )
+                                );
+
+                                return sprintf("%." . $precision . "f", round($result->{'Score'}, $precision));
+                            case 'url':
+                                return $result->{'domain'};
+                            default:
+                                return $matches[0];
                         }
                     },
-                $text
-            );
-
-            // Siwecos shortcode class?
-            extract(
-                $this->shortcode_attributes(
-                    [
-                        "class" => ""
-                    ], $matches[1]
-                )
-            );
-
-            if ($class !== "")
-            {
-                $class = preg_replace(
-                    "/%S/", floor($result->{'Score'} / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
+                    $text
                 );
 
-                return '<div class="' . $class . '">' . $text . '</div>';
-            }
+                // Siwecos shortcode class?
+                extract(
+                    $this->shortcodeAttributes(
+                        array(
+                            "class" => ""
+                        ), $matches[1]
+                    )
+                );
 
-            return $text;
+                if ($class !== "")
+                {
+                    $class = preg_replace(
+                        "/%S/", floor($result->{'Score'} / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
+                    );
+
+                    return '<div class="' . $class . '">' . $text . '</div>';
+                }
+
+                return $text;
             },
-        $article->text
+            $article->text
         );
 
         return true;
@@ -157,10 +158,10 @@ class PlgContentSealoftrust extends JPlugin
      *
      * @return array
      */
-    protected  function shortcode_attributes($attributes = [], $string = "")
+    protected  function shortcodeAttributes($attributes = array(), $string = "")
     {
         // Split at whitespace followed by something that looks like an attribute
-        $matches = [];
+        $matches = array();
 
         // String has to start with an identifier followed by "="
         while (1 === preg_match("/^\s+(\w+)\s*=\s*/", $string, $matches))
@@ -169,7 +170,7 @@ class PlgContentSealoftrust extends JPlugin
             $k = $matches[1];
 
             if (1 == preg_match("/^'((?:\\\\.|[^\\'\\\\])*)'/", $string, $matches)
-             || 1 == preg_match('/^"((?:\\\\.|[^\\"\\\\])*)"/', $string, $matches))
+                || 1 == preg_match('/^"((?:\\\\.|[^\\"\\\\])*)"/', $string, $matches))
             {
                 $attributes[$k] = preg_replace("/\\\\(.)/", '${1}', $matches[1]);
             }
