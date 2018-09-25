@@ -12,5 +12,6 @@
             "name": "David Jardin",
             "email": "d.jardin@djumla.de"
         }
-    ]
+    ],
+    "minimum-stability": "RC"
 }
