@@ -106,12 +106,12 @@ if (isset($this->_script['text/javascript']))
 				<nav class="headerbar__mainnav">
 					<jdoc:include type="modules" name="mainnav" />
 				</nav>
-				<nav class="languageselect">
-					<jdoc:include type="modules" name="language" />
-				</nav>
 				<section class="headerbar__search">
 					<jdoc:include type="modules" name="search" />
 				</section>
+				<nav class="languageselect">
+					<jdoc:include type="modules" name="language" />
+				</nav>
 			</div>
 		</div>
 	</header>

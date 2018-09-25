@@ -14,7 +14,7 @@ $lightred: #d55b64;
 $basefontcolor: #020000;
 $brightgrey: #fcfcfc;
 $darkgrey: #cbcccc;
-$buttoncolor: $red;
+$buttoncolor: darken(#2bbbad, 15%);
 
 // Mixins
 @mixin font_smoothing {
