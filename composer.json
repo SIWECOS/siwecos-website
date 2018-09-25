@@ -1,0 +1,16 @@
+{
+    "name": "siwecos/siwecos-website",
+    "description": "SIWECOS.de Website",
+    "type": "project",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.8.x",
+        "joomla/coding-standards": "~2.0"
+    },
+    "license": "GPLv2 or later",
+    "authors": [
+        {
+            "name": "David Jardin",
+            "email": "d.jardin@djumla.de"
+        }
+    ]
+}

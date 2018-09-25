@@ -3,13 +3,13 @@
 defined('_JEXEC') or die;
 
 if (($this->error->getCode()) == '404') {
-	header("HTTP/1.0 404 Not Found");
+    header("HTTP/1.0 404 Not Found");
 }
 
 if (!isset($this->error))
 {
-	$this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-	$this->debug = false;
+    $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+    $this->debug = false;
 }
 
 
@@ -28,9 +28,9 @@ $this->direction = $doc->direction;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title><?php echo $this->error->getCode(); ?> - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></title>
-	<?php if ($app->get('debug_lang', '0') == '1' || $app->get('debug', '0') == '1') : ?>
+    <?php if ($app->get('debug_lang', '0') == '1' || $app->get('debug', '0') == '1') : ?>
         <link rel="stylesheet" href="<?php echo $this->baseurl ?>/media/cms/css/debug.css" type="text/css" />
-	<?php endif; ?>
+    <?php endif; ?>
     <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/template.css" type="text/css" />
 </head>
 <body class="fourofour">
@@ -42,10 +42,10 @@ $this->direction = $doc->direction;
                     <div id="outline">
                         <div id="errorboxoutline">
 
-							<?php  if ($this->error->getCode() == '404') : ?>
+                            <?php  if ($this->error->getCode() == '404') : ?>
                                 <h4 id="errorboxheader">404 oh no - Page not found</h4>
                                 <div id="errorboxbody"><p>Sorry! That page cannot be found on our servers. Please use this link to <a href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>"><?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a>.</p></div>
-							<?php else : ?>
+                            <?php else : ?>
                                 <h4 id="errorboxheader"><?php echo $this->error->getCode(); ?> - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></h4>
                                 <div id="errorboxbody">
                                     <p><strong><?php echo JText::_('JERROR_LAYOUT_NOT_ABLE_TO_VISIT'); ?></strong></p>
@@ -65,13 +65,13 @@ $this->direction = $doc->direction;
                                     <div id="techinfo">
                                         <p><?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></p>
                                         <p>
-											<?php if ($this->debug) : ?>
-												<?php echo $this->renderBacktrace(); ?>
-											<?php endif; ?>
+                                            <?php if ($this->debug) : ?>
+                                                <?php echo $this->renderBacktrace(); ?>
+                                            <?php endif; ?>
                                         </p>
                                     </div>
                                 </div> <!-- errorboxbody -->
-							<?php endif; ?>
+                            <?php endif; ?>
                         </div> <!-- errorboxoutline -->
                     </div> <!-- outline -->
                 </div> <!-- error -->
@@ -86,7 +86,7 @@ $this->direction = $doc->direction;
 <script type="text/javascript">
     var _paq = _paq || [];
     // tracker methods like "setCustomDimension" should be called before "trackPageView"
-	<?= (($this->error->getCode()) == '404') ? "_paq.push(['setDocumentTitle',  '404/URL = ' +  encodeURIComponent(document.location.pathname+document.location.search) + '/From = ' + encodeURIComponent(document.referrer)]);" : ''; ?>
+    <?= (($this->error->getCode()) == '404') ? "_paq.push(['setDocumentTitle',  '404/URL = ' +  encodeURIComponent(document.location.pathname+document.location.search) + '/From = ' + encodeURIComponent(document.referrer)]);" : ''; ?>
 
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);

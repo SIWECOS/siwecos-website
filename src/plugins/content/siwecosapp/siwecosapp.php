@@ -17,43 +17,42 @@ defined('_JEXEC') or die;
  */
 class PlgContentSiwecosapp extends JPlugin
 {
-    /**
-     * Embed shortcode
-     *
-     * @param   string  $context   context string
-     * @param   object  &$article  article object
-     * @param   object  &$params   params object
-     * @param   int     $page      page number
-     *
-     * @return bool
-     */
-    public function onContentPrepare($context, &$article, &$params, $page = 0)
-    {
-        if (false === strpos($article->text, '{siwecosapp}'))
-        {
-            // Bail out if there is no shortcode
-            return true;
-        }
+	/**
+	 * Embed shortcode
+	 *
+	 * @param   string  $context   context string
+	 * @param   object  $article   article object
+	 * @param   object  $params    params object
+	 * @param   int     $page      page number
+	 *
+	 * @return boolean
+	 */
+	public function onContentPrepare($context, &$article, &$params, $page = 0)
+	{
+		if (false === strpos($article->text, '{siwecosapp}'))
+		{
+			// Bail out if there is no shortcode
+			return true;
+		}
 
+		$assets = array(
+			"spa/main/manifest.js",
+			"spa/main/vendor.js",
+			"spa/main/app.js"
+		);
 
-        $assets = [
-            "spa/main/manifest.js",
-            "spa/main/vendor.js",
-            "spa/main/app.js"
-        ];
+		$replacement = '<div id="app"></div>';
 
-        $replacement = '<div id="app"></div>';
+		foreach ($assets as $asset)
+		{
+			if (!file_exists(JPATH_ROOT . "/" . $asset))
+			{
+				$article->text = str_ireplace("{siwecosapp}", "Missing asset file: " . $asset, $article->text);
+			}
 
-        foreach ($assets as $asset)
-        {
-            if (!file_exists(JPATH_ROOT . "/" . $asset))
-            {
-                $article->text = str_ireplace("{siwecosapp}", "Missing asset file: " . $asset, $article->text);
-            }
+			$replacement .= '<script type=text/javascript src="' . JURI::base() . $asset . '" defer></script>';
+		}
 
-            $replacement .= '<script type=text/javascript src="' . JURI::base() . $asset . '" defer></script>';
-        }
-
-        $article->text = str_ireplace("{siwecosapp}", $replacement, $article->text);
-    }
+		$article->text = str_ireplace("{siwecosapp}", $replacement, $article->text);
+	}
 }
