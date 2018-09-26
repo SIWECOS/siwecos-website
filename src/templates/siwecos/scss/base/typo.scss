@@ -49,6 +49,10 @@
     ul {
       list-style-type: square;
     }
+
+    img {
+      max-width: 100%;
+    }
   }
 
   .sidebar .moduletable > h3:first-child {
@@ -268,6 +272,9 @@
     margin-right: auto;
   }
   .centertext {
-    text-align: center;
+    text-align: center !important;
+  }
+  .sealimage {
+    max-width: 150px;
   }
 }
