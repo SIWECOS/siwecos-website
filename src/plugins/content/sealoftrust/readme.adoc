@@ -91,18 +91,14 @@ Aktivieren der Landingpage
 Nachdem die Landingpage erstellt wurde, empfiehlt es sich, ihr eine kurze URL zu geben.
 Dazu wird ein Menüeintrag für die Seite erstellt:
 
-* menu:Menüs[Verwalten > Neues Menü]
-** `Titel`: Verstecktes Menü
-** `Menütyp`: Verstecktes Menü
-** `Beschreibung`: Menü für Links die nicht dargestellt werden sollen
-** `Bereich`: Site
-** btn:[Speichern & Schließen]
-* menu:Menüs[Verstecktes Menü > Neuer Menüeintrag]
+* menu:Menüs[{Beliebiges Menü} > Neuer Menüeintrag]
 ** `Menütitel`: scanned-by-siwecos
 ** menu:Menüeintragstyp[Auswählen]
 *** menu:Beiträge[Einzelner Beitrag]
 ** menu:Beitrag auswählen[Auswählen]
 *** Landingpage / Zertifikatsseite auswählen
+** Wechsel in den Tab "Linktyp"
+*** Option "Im Menü anzeigen" auf "Nein setzen"
 ** btn:[Speichern & Schließen]
 * menu:System[Konfiguration]
 ** `Suchmaschinen-freundliche` URL: Ja
