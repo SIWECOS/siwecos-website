@@ -114,6 +114,16 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 				<?php endif; ?>
 			<?php endif; ?>
 		</dd>
+        <?php if($customFields["veranstaltungsort-adresse"]->value): ?>
+        <dt>
+			<?php echo JText::_('TPL_SIWECOS_EVENTS_LOCATIONADDRESS'); ?>
+        </dt>
+        <dd itemprop="location" itemscope itemtype="http://schema.org/Text">
+			<?php if($customFields["veranstaltungsort-adresse"]->value): ?>
+				<?php echo nl2br($customFields["veranstaltungsort-adresse"]->value); ?>
+			<?php endif; ?>
+        </dd>
+        <?php endif; ?>
 	</dl>
 
 	<?php if (!$this->print) : ?>
