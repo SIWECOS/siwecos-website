@@ -1,4 +1,4 @@
-dist: trusty
+dist: precise
 
 env:
   global:
@@ -38,4 +38,4 @@ notifications:
     on_failure: always  # options: [always|never|change] default: always
     on_start: false     # default: false
 
-sudo: false
+sudo: required
