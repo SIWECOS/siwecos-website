@@ -1,7 +1,7 @@
 @include critical(true) {
-  body:not(.isnews) .item-page > .item-image {
+  .item-page > .item-image {
     text-align: center;
-    img {
+    body:not(.isnews)  & img {
       max-height: 80px;
     }
   }
