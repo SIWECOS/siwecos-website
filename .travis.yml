@@ -32,11 +32,11 @@ matrix:
         - npm install
         - gulp parse-template-scss
         - gulp parse-critical-scss
-        - rsync --progress -avz -e "ssh -p 2244" ./src/modules/mod_accountbox ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/modules
-        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/sealoftrust ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
-        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/siwecosapp ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
-        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/siwecosfreescan ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
-        - rsync --progress -avz -e "ssh -p 2244" ./src/templates/siwecos ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/templates
+        - rsync --progress -avz -e "ssh -o StrictHostKeyChecking=no -p 2244" ./src/modules/mod_accountbox ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/modules
+        - rsync --progress -avz -e "ssh -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/sealoftrust ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/siwecosapp ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/siwecosfreescan ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -o StrictHostKeyChecking=no -p 2244" ./src/templates/siwecos ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/templates
 
 
 notifications:
