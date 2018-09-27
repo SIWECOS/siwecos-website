@@ -1,18 +1,21 @@
-language: php
-
 dist: trusty
 
 matrix:
-  fast_finish: true
   include:
-    - php: 7.0
-    - php: 7.1
+    - language: php
+      php: 7.2
+      script:
+        - composer selfupdate
+        - composer install
+        - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/modules
+        - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/plugins
 
-script:
-  - composer selfupdate
-  - composer install
-  - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/modules
-  - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/plugins
+    - language: node_js
+      node_js: lts/*
+      script:
+        - npm install
+        - gulp parse-template-scss
+        - gulp parse-critical-scss
 
 notifications:
   webhooks:
