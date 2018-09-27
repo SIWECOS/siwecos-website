@@ -25,6 +25,9 @@ matrix:
     - language: node_js
       stage: test
       node_js: lts/*
+      branches:
+        only:
+        - master
       script:
         - npm install
         - gulp parse-template-scss
