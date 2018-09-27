@@ -1,8 +1,14 @@
 dist: trusty
 
+stages:
+  - test
+  - compile
+  - deploy
+
 matrix:
   include:
     - language: php
+      stage: test
       php: 7.2
       script:
         - composer selfupdate
@@ -11,11 +17,13 @@ matrix:
         - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/plugins
 
     - language: node_js
+      stage: compile
       node_js: lts/*
       script:
         - npm install
         - gulp parse-template-scss
         - gulp parse-critical-scss
+
 
 notifications:
   webhooks:
