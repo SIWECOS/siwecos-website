@@ -2,7 +2,7 @@ dist: trusty
 
 env:
   global:
-  secure: "dtkn0UmqSLo9jAczPhowchEHr95qRHjuljO1SOQFz4JEPBGe9fmwGr+u1+Yh91YRDbixTiphLf0ClXtipUptk3gq8XaDMzsgb65InBE7G3wfbfX+cmlh8KPC/8WFU+Jfy8pkyHpNOjeagIymJ98+aJIeTFKsYevewVMEz/lDhRAjchFSCWrbST7SAxmRseKV+A+LxpwqhYBjOu4VKQ7piQpuQcQyJzQrAm5utfMTtNtdSutEtmz0XmABIl/nEY/4f13plnfPYQNMOQGH9uSh7KumHhGuJcf9xaaW/X9iApD8qJyeuutVCmh3VhM29R7cadJnpOJ1WDYVIMUfC+l1tXJPZJDdZTogEDt9Vw2b9pUfA/raWwZq7/zej41GgDEUANgyKvI8C0pz+bBfmXAJOG8ipQEodsY6n4UCSFO3gNDHr0Mi1MX92S7i4ibjG1mGQ1gUcQr3dP3NFl5bvp9bDu9QdAXZzuE4mMgLENnlJyh49gc5e1Bw1ivAmJQxknaFYoeeS/J2qbAHgM5TxdyJwaxMm8cLe2Rh3LLSonUsoxo1TgKxEtnS4hQMdyDtsdLtYBqlvvNnfqfivtgia2Mr/tgcOMnUhwlB4tTodnqikICZBdgvUuz+++JHHGhnRhm9gaYK6IW0jOinGQvLenXcMbrCxsVA9kgZStz+BH7jMCA="
+    secure: "dtkn0UmqSLo9jAczPhowchEHr95qRHjuljO1SOQFz4JEPBGe9fmwGr+u1+Yh91YRDbixTiphLf0ClXtipUptk3gq8XaDMzsgb65InBE7G3wfbfX+cmlh8KPC/8WFU+Jfy8pkyHpNOjeagIymJ98+aJIeTFKsYevewVMEz/lDhRAjchFSCWrbST7SAxmRseKV+A+LxpwqhYBjOu4VKQ7piQpuQcQyJzQrAm5utfMTtNtdSutEtmz0XmABIl/nEY/4f13plnfPYQNMOQGH9uSh7KumHhGuJcf9xaaW/X9iApD8qJyeuutVCmh3VhM29R7cadJnpOJ1WDYVIMUfC+l1tXJPZJDdZTogEDt9Vw2b9pUfA/raWwZq7/zej41GgDEUANgyKvI8C0pz+bBfmXAJOG8ipQEodsY6n4UCSFO3gNDHr0Mi1MX92S7i4ibjG1mGQ1gUcQr3dP3NFl5bvp9bDu9QdAXZzuE4mMgLENnlJyh49gc5e1Bw1ivAmJQxknaFYoeeS/J2qbAHgM5TxdyJwaxMm8cLe2Rh3LLSonUsoxo1TgKxEtnS4hQMdyDtsdLtYBqlvvNnfqfivtgia2Mr/tgcOMnUhwlB4tTodnqikICZBdgvUuz+++JHHGhnRhm9gaYK6IW0jOinGQvLenXcMbrCxsVA9kgZStz+BH7jMCA="
 
 stages:
   - test
@@ -30,6 +30,10 @@ matrix:
         - gulp parse-template-scss
         - gulp parse-critical-scss
         - rsync --progress -avz -e "ssh -p 2244" ./src/modules/mod_accountbox ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/modules
+        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/sealoftrust ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/siwecosapp ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -p 2244" ./src/plugins/content/siwecosfreescan ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -p 2244" ./src/templates/siwecos ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/templates
 
 
 notifications:
