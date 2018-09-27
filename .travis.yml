@@ -1,8 +1,8 @@
-dist: precise
+dist: trusty
 
 env:
   global:
-    secure: "CmbOINunx1Fqhr0RTworxsWUwiCCshGkSUzvHcjYlrkyiQ5pBhfmIZGZk3lpsO9QdmN2ciFotriXXbnRPXjx19fpAMkddBtK91eqaq55jsHVmr6aTLR0V1H7dtdyWueZZqB2iTzjbK3j5oBiTWyxl6M+oLGCBRbLqvwKMFn8+NJp3hzWAoiP+CpZJjsI7eTLBoVX22fZlQFjSpFeZnVSzFuOZ2PC8UcAUL27Dx7FUBSXqatkjxaXvFSJ3xnj7jdVT/C86VwlUu1Ra5q8J8RVKr/Qe1lvJpudHTkJsKSWGU/WSNfJF3pgRKl2Y1RxEFA9Ib2MosEyblWmO4+PRC7SpyrABM8mVlWwA0kPwLXm/ZZcOaH3knmmlQfV3IOMHeLgcADHRtD3S7WTAsa6gfINj7c04xi6Bm/0j03hgRGxtY3f6UnKjSYxogy3KEXVUE3R6c2LSHneG9xWAq9bqYoSR1uc5KkaQJh90AUGDcq0wfKbIlI6nXGvr2JRRnGT7guKsUZp54Enqmx5fwMVJ5YXJvDppMda1k9c4yIZ68KGS7Jm02vaOlIJd40xtXMV6xlpnfHLUlXr/n8pBWgeAMPAiOab1JOYqlbpv/7I97aBVt8V3L0Rm5dx/cusnVBDrB4sBGiJXDBQD1nRgK/C91LytcstfLHZdoPUdbwVYzYECmg="
+  secure: "dtkn0UmqSLo9jAczPhowchEHr95qRHjuljO1SOQFz4JEPBGe9fmwGr+u1+Yh91YRDbixTiphLf0ClXtipUptk3gq8XaDMzsgb65InBE7G3wfbfX+cmlh8KPC/8WFU+Jfy8pkyHpNOjeagIymJ98+aJIeTFKsYevewVMEz/lDhRAjchFSCWrbST7SAxmRseKV+A+LxpwqhYBjOu4VKQ7piQpuQcQyJzQrAm5utfMTtNtdSutEtmz0XmABIl/nEY/4f13plnfPYQNMOQGH9uSh7KumHhGuJcf9xaaW/X9iApD8qJyeuutVCmh3VhM29R7cadJnpOJ1WDYVIMUfC+l1tXJPZJDdZTogEDt9Vw2b9pUfA/raWwZq7/zej41GgDEUANgyKvI8C0pz+bBfmXAJOG8ipQEodsY6n4UCSFO3gNDHr0Mi1MX92S7i4ibjG1mGQ1gUcQr3dP3NFl5bvp9bDu9QdAXZzuE4mMgLENnlJyh49gc5e1Bw1ivAmJQxknaFYoeeS/J2qbAHgM5TxdyJwaxMm8cLe2Rh3LLSonUsoxo1TgKxEtnS4hQMdyDtsdLtYBqlvvNnfqfivtgia2Mr/tgcOMnUhwlB4tTodnqikICZBdgvUuz+++JHHGhnRhm9gaYK6IW0jOinGQvLenXcMbrCxsVA9kgZStz+BH7jMCA="
 
 stages:
   - test
@@ -29,7 +29,7 @@ matrix:
         - npm install
         - gulp parse-template-scss
         - gulp parse-critical-scss
-        - find . -type f -exec curl --key siwecosdeploy_rsa --ftp-create-dirs -T {} sftp://${SFTP_HOST}/home/web4cshyx/html/siwecos.de{} \;
+        - rsync --progress -avz -e "ssh -p 2244" ./src/modules/mod_accountbox ${SFTP_HOST}:/home/web4cshyx/html/siwecos.de/modules
 
 
 notifications:
