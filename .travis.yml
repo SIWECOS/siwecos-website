@@ -1,8 +1,15 @@
 dist: trusty
 
+env:
+  global:
+  - 'SFTP_HOST=BxwHm702C+ZMsOXptULCxrUZ90G9gOOpZznFnf28LGNLijWJoN2oxnof1bv4c9wccb6W1nji0s73Xn6dyN8MMnG6mHBLpjIA/5YsT8gSaoD31de/+qxYDe0fbAauhMn2NwjlXNa8UDBOTSk7C1gDQvBwLab1HaJweDv8aEFXHBSag9n8rCBSeMWwhJA3FZn5UTVk7DKXzWvIclFwZmw/ldv7HgXQ60Dswf5060nSyQgex2xjzybCF89wkJfJ+hYnLCriJnuZjWzfRI/95g3rKiUCW2Vmc5qG9GEpEB6doTAdUiTSbU+H4y+vQ+5/yj0zfEdLYhJxP/raZ7nw4Zkx7DqqOFTeRkoYn4fMeVziH8YO2vW05l7ijC2BJ6d9VwLmzcDKhTBKjen16r9C3mAO9SsfxiQ4Ae3lFgHeqOcY56weUGUC3KaN0MbUCjx1INZ9iFZkDNkzq2YRCU2uG48BwDVeIzpkaKW8HAX/74wmcSiJFe+tgs7rFHxHCsYKSJEKiFkI4yZnGgASfu0eisg59c9LGlRgM+1KkFX1FLW3g2IHthqQ307B+knnyYX5KHkQOwV/1tRrYUcGdKGSGGaV+8Jn+yNh++tDHYkvCmkaAURE8kFNRs7WSUDchvkmQbvAHXUid1SOqzCqJEXq853PfYwwsHkkbNFn5JHzQyIjcbE='
+
 stages:
   - test
   - deploy
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv -in siwecosdeploy_rsa.enc -out siwecosdeploy_rsa -d
 
 matrix:
   include:
@@ -22,9 +29,7 @@ matrix:
         - npm install
         - gulp parse-template-scss
         - gulp parse-critical-scss
-        - which lftp
-
-
+        - find . -type f -exec curl --key siwecosdeploy_rsa --ftp-create-dirs -T {} sftp://${SFTP_HOST}/home/web4cshyx/html/siwecos.de{} \;
 
 
 notifications:
