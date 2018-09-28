@@ -6,8 +6,10 @@ env:
 
 stages:
   - name: test
-  - name: deploy
+  - name: deploy-live
     if: branch = master AND type = push
+  - name: deploy-staging
+    if: branch = staging AND type = push
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv -in siwecosdeploy_rsa.enc -out siwecosdeploy_rsa -d
@@ -32,8 +34,23 @@ matrix:
         - gulp parse-template-scss
         - gulp parse-critical-scss
 
+
     - language: node_js
-      stage: deploy
+      stage: deploy-staging
+      node_js: lts/*
+      script:
+        - npm install
+        - gulp parse-template-scss
+        - gulp parse-critical-scss
+        - rsync --progress -avz -e "ssh -i siwecosdeploy_rsa -o StrictHostKeyChecking=no -p 2244" ./src/modules/mod_accountbox ${SFTP_HOST}:/home/web4cshyx/html/staging.siwecos.de/modules
+        - rsync --progress -avz -e "ssh -i siwecosdeploy_rsa -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/sealoftrust ${SFTP_HOST}:/home/web4cshyx/html/staging.siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -i siwecosdeploy_rsa -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/siwecosapp ${SFTP_HOST}:/home/web4cshyx/html/staging.siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -i siwecosdeploy_rsa -o StrictHostKeyChecking=no -p 2244" ./src/plugins/content/siwecosfreescan ${SFTP_HOST}:/home/web4cshyx/html/staging.siwecos.de/plugins/content
+        - rsync --progress -avz -e "ssh -i siwecosdeploy_rsa -o StrictHostKeyChecking=no -p 2244" ./src/templates/siwecos ${SFTP_HOST}:/home/web4cshyx/html/staging.siwecos.de/templates
+
+
+    - language: node_js
+      stage: deploy-live
       node_js: lts/*
       script:
         - npm install
