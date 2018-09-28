@@ -73,7 +73,9 @@ class PlgContentSealoftrust extends JPlugin
 				// Parse all siwecos shortcodes
 				$text = preg_replace_callback(
 					'/\[(last|score|url)\b(.*?)\]/',
-					function ($matches) use ($result, $dateFormat) {
+					function ($matches) use ($result, $dateFormat)
+					{
+						// @codingStandardsIgnoreStart
 						switch ($matches[1])
 						{
 							case 'last':
@@ -120,6 +122,7 @@ class PlgContentSealoftrust extends JPlugin
 							default:
 								return $matches[0];
 						}
+						// @codingStandardsIgnoreEnd
 					},
 					$text
 				);
