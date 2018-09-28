@@ -7,6 +7,7 @@ env:
 stages:
   - test
   - deploy
+    if: branch = master
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv -in siwecosdeploy_rsa.enc -out siwecosdeploy_rsa -d
@@ -24,7 +25,7 @@ matrix:
         - ./vendor/bin/phpcs --extensions=php --standard=$(pwd)/vendor/joomla/coding-standards/Joomla src/plugins
 
     - language: node_js
-      stage: test
+      stage: deploy
       node_js: lts/*
       branches:
         only:
