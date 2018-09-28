@@ -35,7 +35,9 @@ defined('_JEXEC') or die; ?>
 			</a>
 		</li>
 		<li class="accountbox__link accountbox__link--loggedin">
-			<a id="accountbox__logoff" href="<?php echo JRoute::_('index.php?Itemid=' . $params->get('menuitem')); ?>"><?php echo JText::_('MOD_ACCOUNTBOX_LOGOUT'); ?></a>
+			<a id="accountbox__logoff" href="<?php echo JRoute::_('index.php?Itemid=' . $params->get('menuitem')); ?>">
+				<?php echo JText::_('MOD_ACCOUNTBOX_LOGOUT'); ?>
+			</a>
 		</li>
 	</ul>
 </div>
