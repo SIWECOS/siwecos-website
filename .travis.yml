@@ -9,7 +9,7 @@ stages:
   - name: deploy-live
     if: branch = master AND type = push
   - name: deploy-staging
-    if: branch = staging AND type = push
+    if: branch = develop AND type = push
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_12c8071d2874_key -iv $encrypted_12c8071d2874_iv -in siwecosdeploy_rsa.enc -out siwecosdeploy_rsa -d
