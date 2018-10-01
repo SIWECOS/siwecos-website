@@ -50,7 +50,9 @@ class PlgContentSiwecosfreescan extends JPlugin
 				$article->text = str_ireplace("{siwecosfreescan}", "Missing asset file: " . $asset, $article->text);
 			}
 
-			$replacement .= '<script type=text/javascript src="' . JURI::base() . $asset . '" defer></script>';
+			$cacheBuster = "?v=" . md5(file_get_contents(JPATH_ROOT . "/" . $asset));
+
+			$replacement .= '<script type=text/javascript src="' . JURI::base() . $asset . $cacheBuster . '" defer></script>';
 		}
 
 		$article->text = str_ireplace("{siwecosfreescan}", $replacement, $article->text);
