@@ -131,6 +131,7 @@ document.querySelector('.mainnav__navtoggler').addEventListener('click', functio
     document.body.classList.remove('body--activenav');
   } else {
     document.body.classList.add('body--activenav');
+    window.scrollTo(0, 0);
   }
 });
 
@@ -179,6 +180,25 @@ window.login_announce= function(data) {
     box.classList.add('accountbox--loggedon');
   }
 };
+
+// scroll watcher
+window.onscroll = function() {
+  var top  = window.pageYOffset || document.documentElement.scrollTop;
+  var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+  var marginOffset = (width >= 768) ? 15 : 0;
+
+  if(top > (document.querySelector('.headerbar__supportbox').offsetTop + document.querySelector('.headerbar__supportbox').clientHeight + marginOffset))
+  {
+      document.body.classList.add('body--fixednav')
+  }
+  else
+  {
+      document.body.classList.remove('body--fixednav')
+  }
+}
 
 window.logoutSpa= function () {
   window.sessionStorage.removeItem("access_token");

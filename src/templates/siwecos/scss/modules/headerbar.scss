@@ -32,12 +32,27 @@
         width: 100%;
         display: inline-block;
       }
+
+      body.body--fixednav & {
+        padding-bottom: 40px;
+      }
     }
 
     &__navbar {
       background: $red;
       color: white;
       height: 40px;
+
+      body.body--fixednav & {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 9000;
+
+        .mod-languages {
+          display: none;
+        }
+      }
     }
 
     &__search {

@@ -146,6 +146,6 @@ if (isset($this->_script['text/javascript']))
 	<jdoc:include type="modules" name="debug" />
 
 	<link href="<?php echo 'templates/' . $this->template . '/css/template.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/template.css")); ?>" rel="stylesheet" type="text/css" />
-	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js"></script>
+	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
 </body>
 </html>
