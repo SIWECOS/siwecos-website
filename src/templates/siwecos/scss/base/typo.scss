@@ -194,6 +194,11 @@
     &:hover, &:focus {
       background: $darkred;
     }
+
+    &[disabled] {
+      background: $darkgrey;
+      cursor: no-drop;
+    }
   }
 
   .btn-danger {
