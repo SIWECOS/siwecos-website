@@ -35,7 +35,7 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 $cspRules = array(
 	"default-src" => array("'self'"),
 	'connect-src' => array("'self'", "https://api.siwecos.de", "https://bla.staging2.siwecos.de", "https://ca.staging2.siwecos.de"),
-	'style-src' => array("'self'", "'unsafe-inline'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
+	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/"),
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
@@ -81,6 +81,9 @@ if (isset($this->_script['text/javascript']))
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 	<jdoc:include type="head" />
 	<style><?php echo $criticalCss; ?></style>
+    <!--[if IE ]>
+        <link href="<?php echo 'templates/' . $this->template . '/css/critical.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/critical.css")); ?>" rel="stylesheet" type="text/css">
+    <![endif]-->
 </head>
 <body class="<?php echo $pageclass ? htmlspecialchars($pageclass) : 'default'; ?>">
 	<header>
