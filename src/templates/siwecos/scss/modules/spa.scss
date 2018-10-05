@@ -68,4 +68,11 @@
     padding: 0;
     list-style: none;
   }
+
+  .wppb-error {
+    background: $red;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+  }
 }
