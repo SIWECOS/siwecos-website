@@ -68,4 +68,10 @@
     padding: 0;
     list-style: none;
   }
+
+  .wppb-error {
+    background: $red;
+    color: white;
+    padding: 10px;
+  }
 }
