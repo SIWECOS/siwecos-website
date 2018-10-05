@@ -41,7 +41,8 @@ class PlgContentSiwecosapp extends JPlugin
 			"spa/main/app.js"
 		);
 
-		$replacement = '<div id="app"></div>';
+		$replacement = '<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" defer=defer></script>';
+		$replacement .= '<div id="app"></div>';
 
 		foreach ($assets as $asset)
 		{

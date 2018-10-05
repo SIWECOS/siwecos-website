@@ -34,9 +34,10 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 // Generate CSP
 $cspRules = array(
 	"default-src" => array("'self'"),
+	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com"),
 	'connect-src' => array("'self'", "https://api.siwecos.de", "https://bla.staging2.siwecos.de", "https://ca.staging2.siwecos.de"),
 	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
-	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/"),
+	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
 			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com"
