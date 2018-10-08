@@ -1,0 +1,38 @@
+@include critical(false) {
+  body.pressdownloads div[itemprop=articleBody] {
+    > ul {
+      list-style: none;
+      padding: 0;
+
+      > li {
+        background-image: url(data-uri('src/templates/siwecos/img/download.svg'));
+        background-size: 24px;
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left: 36px;
+        margin: 1rem 0;
+        line-height: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $viewport_tablet_portrait) {
+  body.pressdownloads  div[itemprop=articleBody] {
+    h2 {
+      text-align: center;
+    }
+
+    > ul {
+      @include flex_row_start
+
+      > li {
+        display: block;
+        width: 50%;
+        padding: 0 0 0 80px;
+        background-position: 40px center;
+      }
+    }
+  }
+}
