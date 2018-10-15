@@ -34,8 +34,8 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 // Generate CSP
 $cspRules = array(
 	"default-src" => array("'self'"),
-	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com"),
-	'connect-src' => array("'self'", "https://api.siwecos.de", "https://bla.staging2.siwecos.de", "https://ca.staging2.siwecos.de"),
+	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://webstats.eco.de"),
+	'connect-src' => array("'self'", "https://api.siwecos.de", "https://bla.staging2.siwecos.de", "https://ca.staging2.siwecos.de", "https://webstats.eco.de"),
 	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
 	'img-src' => array(
@@ -151,5 +151,20 @@ if (isset($this->_script['text/javascript']))
 
 	<link href="<?php echo 'templates/' . $this->template . '/css/template.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/template.css")); ?>" rel="stylesheet" type="text/css" />
 	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
+	<!-- Matomo -->
+	<script>
+	 var _paq = _paq || [];
+	 /* tracker methods like “setCustomDimension” should be called before “trackPageView” */
+	 _paq.push(['trackPageView']);
+	 _paq.push(['enableLinkTracking']);
+	 (function() {
+	   var u="//webstats.eco.de/";
+	   _paq.push(['setTrackerUrl', u+'piwik.php']);
+	   _paq.push(['setSiteId', '152']);
+	   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+	   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+	 })();
+	</script>
+	<!-- End Matomo Code -->
 </body>
 </html>
