@@ -283,4 +283,11 @@
   .sealimage {
     max-width: 150px;
   }
+
+  .alert.alert--error {
+    background: $darkred;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
 }
