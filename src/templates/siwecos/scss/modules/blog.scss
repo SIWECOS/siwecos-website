@@ -10,6 +10,16 @@
         font-weight: 300 !important;
       }
 
+      .article-info {
+        .article-info-term {
+          @extend .visuallyhidden;
+        }
+
+        dd {
+          font-size: 0.9rem;
+        }
+      }
+
       > .item-image {
         padding: 5px;
         border: 1px solid #c2c5ca;
