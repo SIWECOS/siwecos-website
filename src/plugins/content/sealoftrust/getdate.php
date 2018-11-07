@@ -42,7 +42,8 @@ function getScanDate()
 
 	// Somehow get the domain url we are interested in
 	$info = preg_split("/\//", substr($_SERVER['PHP_SELF'], strlen($_SERVER['SCRIPT_NAME'])), 3);
-	$domain = preg_replace('/^([a-z][\\-a-z0-9]*(?:\.[a-z][\\-a-z0-9]*)*)?.*$/i', '$1', substr($info[1], 0, 255));
+	// ToDo: Allow IDN - Idea: use idn_to_ascii to validate
+	$domain = preg_replace('/^([a-z0-9][\\-a-z0-9]*(?:\.[a-z0-9][\\-a-z0-9]*)*)?.*$/i', '$1', substr($info[1], 0, 255));
 
 	// Somehow get the format we want. defined by y,m,d,-,/ and .
 	$format = $info[2];
