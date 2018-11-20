@@ -30,15 +30,21 @@
                     <option value="d/m/y G:i:s a e">d/m/y (british)</option>
                     <option value="m/y/d G:i:s a e">m/y/d (US)</option>
                 </field>
-                <field name="domainscan_url" type="text"
+                <field name="domainscan_url" type="URL"
                     description="The url under which the scan result can be retrieved"
                     label="domainscan url"
                     default="https://bla.staging2.siwecos.de/api/v1/domainscan?domain="
                 />
-                <field name="lastscan_url" type="text"
+                <field name="lastscan_url" type="URL"
                     description="The url under which the last scan date can be retrieved"
                     label="lastscan url"
                     default="https://ca.staging2.siwecos.de/api/v1/lastscan"
+                />
+                <field name="connect_timeout" type="integer"
+                    first="0" last="60"
+                    description="How long to wait for a connection to the backend"
+                    label="connect timeout"
+                    default="5"
                 />
             </fieldset>
         </fields>
