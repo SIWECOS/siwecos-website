@@ -40,8 +40,8 @@
                     label="lastscan url"
                     default="https://ca.staging2.siwecos.de/api/v1/lastscan"
                 />
-                <field name="connect_timeout" type="integer"
-                    first="0" last="60"
+                <field name="connect_timeout" type="number"
+                    min="0" max="60" step="5"
                     description="How long to wait for a connection to the backend"
                     label="connect timeout"
                     default="5"
