@@ -54,7 +54,7 @@ function getScanDate()
 		$plugin = JPluginHelper::getPlugin('content', 'sealoftrust');
 		$params = new JRegistry($plugin->params);
 		$coreapi = $params->get('lastscan_url', '');
-		$connect_timeout = $params->get('connect_timeout', 5);
+		$connectTimeout = $params->get('connect_timeout', 5);
 	}
 	catch (Exception $e)
 	{
@@ -66,7 +66,7 @@ function getScanDate()
 	if ($coreapi !== '')
 	{
 		$client = JHttpFactory::getHttp();
-		$response = $client->get($coreapi . '/Y-m-d/' . $domain, null, $connect_timeout);
+		$response = $client->get($coreapi . '/Y-m-d/' . $domain, null, $connectTimeout);
 
 		if ($response)
 		{
