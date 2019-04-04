@@ -10,11 +10,12 @@
   DOMParser,
 */
 /*
-  version: 1.2.4
+  version: 1.2.6
 */
 function sealInit () {
   'use strict'
-  var imgurl = '/wp-content/plugins/seal-of-trust/seal.php/'
+  var imgurl = 'https://siegel.siwecos.de/'
+  var imgext = '.svg'
   var svg = document.getElementById('siwecos-seal')
   var sealgraphics = new DOMParser().parseFromString('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 262.365 100.988">'
         + '  <defs><clipPath clipPathUnits="userSpaceOnUse" id="clip"><rect width="262.36499" height="100.988" x="3.4119999" y="40.965" /></clipPath></defs>'
@@ -90,10 +91,12 @@ function sealInit () {
             }
           }
           format = format.replace(/[^-d/m.y]/g, '')
-          if (format === null || format === '') {
+          if (format === null || format !== 'y-m-d' )  {
             format = 'd.m.y'
           }
-          imgurl = domain.replace(/^(https?:\/\/(\S*?))\/\S*$/, '$1') + imgurl
+          if ( imgurl.charAt(0) == '/') {
+            imgurl = domain.replace(/^(https?:\/\/(\S*?))\/\S*$/, '$1') + imgurl
+          }
           domain = domain.replace(/^\S*[?&]data-siwecos=(\S*?)(?:&\S*)?$/, '$1')
           img = document.createElement('img')
           break
@@ -109,7 +112,7 @@ function sealInit () {
         console.log('error')
       })
       img.width = svg.getBoundingClientRect().width
-      img.src = imgurl + domain + '/' + format
+      img.src = imgurl + domain + '/' + format + imgext
     }
   }
 }
