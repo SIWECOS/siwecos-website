@@ -10,11 +10,11 @@
   DOMParser,
 */
 /*
-  version: 1.2.5
+  version: 1.2.6
 */
 function sealInit () {
   'use strict'
-  var imgurl = 'http://siegel.siwecos.de/'
+  var imgurl = 'https://siegel.siwecos.de/'
   var imgext = '.svg'
   var svg = document.getElementById('siwecos-seal')
   var sealgraphics = new DOMParser().parseFromString('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 262.365 100.988">'
