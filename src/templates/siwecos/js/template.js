@@ -217,3 +217,66 @@ window.login_announce(
 if(document.getElementById("accountbox__logoff")) {
   document.getElementById("accountbox__logoff").addEventListener('click', window.logoutSpa);
 }
+
+// Testometer
+
+let scanometerResults = [23, 47, 74, 97, 46, 50, 91, 100, 3, 47, 74, 97, 46, 50, 91, 100, 3, 47, 74, 97, 46, 50, 91, 100];
+
+let scanometers = document.querySelectorAll('.testometer .testometer__scanometer'); // get Scanometers
+console.log(scanometers);
+
+let scanCounter = 0;
+
+// Set Scanometers
+for (let scanometer of scanometers) {
+  let scanometerLength = scanometer.querySelector('.scanometer__value').getTotalLength(); // Get Length of Path to set Dasharray and Offset - necessary to control PathLength afterwards
+  console.log(scanometerLength);
+  // Set Pathcolor
+  switch (true) {
+    case (scanometerResults[scanCounter] < 50):
+      scanometer.querySelector('.scanometer__value').style.stroke = '#FF3B30';
+      scanometer.querySelector('.scanometer__base').style.stroke = '#FF3B30';
+      scanometer.querySelector('.scanometer__base').style.opacity = '0.25';
+      break;
+    case (scanometerResults[scanCounter] >= 50 && scanometerResults[scanCounter] < 75):
+      scanometer.querySelector('.scanometer__value').style.stroke = '#FFCC00';
+      scanometer.querySelector('.scanometer__base').style.stroke = '#FFCC00';
+      scanometer.querySelector('.scanometer__base').style.opacity = '0.25';
+      break;
+    case (scanometerResults[scanCounter] >= 75):
+      scanometer.querySelector('.scanometer__value').style.stroke = '#30B21F';
+      scanometer.querySelector('.scanometer__base').style.stroke = '#30B21F';
+      scanometer.querySelector('.scanometer__base').style.opacity = '0.25';
+      break;
+  }
+
+  // Set PathLength
+  scanometer.querySelector('.scanometer__value').style.strokeDasharray = scanometerLength;
+  scanometer.querySelector('.scanometer__value').style.strokeDashoffset = scanometerLength - scanometerLength * (scanometerResults[scanCounter] / 100);
+
+  scanCounter++ ; // increase ScanometerCounter
+}
+
+// Sites Toggle
+
+let sites = document.querySelectorAll('.scanresults .item');
+
+for (let site of sites) {
+  site.querySelector('.itemhead__contenttoggler').addEventListener('click', (e) => {
+    site.querySelector('.item__content').classList.toggle('active');
+    if(e.target.innerText === "Details einblenden") {
+      e.target.innerText = "Details ausblenden";
+    } else if(e.target.innerText === "Details ausblenden") {
+      e.target.innerText = "Details einblenden";
+    }
+  });
+}
+
+// Accordion Toggle
+
+let accordionItems = document.querySelectorAll('.contentsection__accordion .accordion__item');
+for (let item of accordionItems) {
+  item.querySelector('.accordionitem__heading').addEventListener('click', () => {
+    item.classList.toggle('active');
+  })
+}
