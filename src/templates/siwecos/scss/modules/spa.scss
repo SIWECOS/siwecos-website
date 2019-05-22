@@ -57,6 +57,15 @@
 
     &:first-child {
       border-top: thin solid lightgrey;
+      padding-top: 20px;
+
+      .domain-item-data > div > svg {
+        top: -10px;
+      }
+
+      .scanner-score-information {
+        top: -6px;
+      }
     }
   }
 
