@@ -152,8 +152,8 @@ if (isset($this->_script['text/javascript']))
 
 	<link href="<?php echo 'templates/' . $this->template . '/css/template.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/template.css")); ?>" rel="stylesheet" type="text/css" />
 	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
-    <script src="https://webstats.eco.de/piwik.js"></script>
     <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/matomo.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/matomo.js")); ?>"></script>
+    <script src="https://webstats.eco.de/piwik.js"></script>
     <noscript><p><img src="https://webstats.eco.de/matomo.php?idsite=152&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 </body>
 </html>
