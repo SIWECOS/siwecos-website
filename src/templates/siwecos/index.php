@@ -34,7 +34,7 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 // Generate CSP
 $cspRules = array(
 	"default-src" => array("'self'"),
-	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://webstats.eco.de", "'sha256-H1Gdq95Qc4rkKQfUp4aatRKaZReh+HTnpBo04R1QIfA='"),
+	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://webstats.eco.de"),
 	'connect-src' => array("'self'", "https://ca.siwecos.de", "https://bla.siwecos.de", "https://bla.staging.siwecos.de", "https://ca.staging.siwecos.de", "https://webstats.eco.de"),
 	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
@@ -152,22 +152,7 @@ if (isset($this->_script['text/javascript']))
 
 	<link href="<?php echo 'templates/' . $this->template . '/css/template.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/template.css")); ?>" rel="stylesheet" type="text/css" />
 	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
-	<?php if(JURI::base() == "https://siwecos.de/"): ?>
-	<!-- Matomo -->
-	<script>
-	 var _paq = _paq || [];
-	 /* tracker methods like “setCustomDimension” should be called before “trackPageView” */
-	 _paq.push(['trackPageView']);
-	 _paq.push(['enableLinkTracking']);
-	 (function() {
-	   var u="//webstats.eco.de/";
-	   _paq.push(['setTrackerUrl', u+'piwik.php']);
-	   _paq.push(['setSiteId', '152']);
-	   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-	   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-	 })();
-	</script>
-	<!-- End Matomo Code -->
-	<?php endif; ?>
+    <script src="https://webstats.eco.de/piwik.js"></script>
+    <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/matomo.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/matomo.js")); ?>"></script>
 </body>
 </html>
