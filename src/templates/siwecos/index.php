@@ -41,7 +41,7 @@ $cspRules = array(
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
 			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com",
-			"https://siegel.siwecos.de"
+			"https://siegel.siwecos.de", "https://webstats.eco.de"
 	)
 );
 
@@ -154,5 +154,6 @@ if (isset($this->_script['text/javascript']))
 	<script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
     <script src="https://webstats.eco.de/piwik.js"></script>
     <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/matomo.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/matomo.js")); ?>"></script>
+    <noscript><p><img src="https://webstats.eco.de/matomo.php?idsite=152&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 </body>
 </html>
