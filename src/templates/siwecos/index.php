@@ -121,6 +121,10 @@ if (isset($this->_script['text/javascript']))
 		</div>
 	</header>
 
+	<?php if ($this->countModules('breadcrumbs')): ?>
+		<jdoc:include type="modules" name="breadcrumbs" style="html5" />
+	<?php endif; ?>
+
 	<div class="contentcontainer">
 		<main>
 			<?php if ($this->countModules('main-top')): ?>
@@ -155,5 +159,19 @@ if (isset($this->_script['text/javascript']))
     <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/matomo.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/matomo.js")); ?>"></script>
     <script src="https://webstats.eco.de/piwik.js"></script>
     <noscript><p><img src="https://webstats.eco.de/matomo.php?idsite=152&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <script type="application/ld+json">
+	<?php echo json_encode(
+            [
+                "@context" => "https://schema.org",
+                "@type" => "Organization",
+                "name" => "SIWECOS",
+                "url" => JURI::base(true),
+                "logo" => [
+                    "@type" => "ImageObject",
+                    "url" => JURI::base(true) . "/templates/siwecos/img/logo.png"
+                ]
+            ]
+        ); ?>
+	</script>
 </body>
 </html>
