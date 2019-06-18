@@ -44,7 +44,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
                     "name" => "SIWECOS",
                     "logo" => [
                         "@type" => "ImageObject",
-                        "url" => JURI::base(true) . "/templates/siwecos/img/logo.png"
+                        "url" => JURI::base(false) . "/templates/siwecos/img/logo.png"
                     ]
                 ]
             ];

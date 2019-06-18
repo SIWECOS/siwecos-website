@@ -178,10 +178,10 @@ if (isset($this->_script['text/javascript']))
 		   "@context" => "https://schema.org",
 			"@type" => "Organization",
 			"name" => "SIWECOS",
-			"url" => JURI::base(true),
+			"url" => JURI::base(false),
 			"logo" => [
 				"@type" => "ImageObject",
-				"url" => JURI::base(true) . "/templates/siwecos/img/logo.png"
+				"url" => JURI::base(false) . "/templates/siwecos/img/logo.png"
 			]
 		]
 	); ?>
