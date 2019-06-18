@@ -120,6 +120,10 @@ if (isset($this->_script['text/javascript']))
 		</div>
 	</header>
 
+	<?php if ($this->countModules('breadcrumbs')): ?>
+		<jdoc:include type="modules" name="breadcrumbs" style="html5" />
+	<?php endif; ?>
+
 	<div class="contentcontainer">
 		<main>
 			<?php if ($this->countModules('main-top')): ?>
@@ -168,5 +172,19 @@ if (isset($this->_script['text/javascript']))
 	</script>
 	<!-- End Matomo Code -->
 	<?php endif; ?>
+	<script type="application/ld+json">
+	<?php echo json_encode(
+		[
+		   "@context" => "https://schema.org",
+			"@type" => "Organization",
+			"name" => "SIWECOS",
+			"url" => JURI::base(true),
+			"logo" => [
+				"@type" => "ImageObject",
+				"url" => JURI::base(true) . "/templates/siwecos/img/logo.png"
+			]
+		]
+	); ?>
+	</script>
 </body>
 </html>

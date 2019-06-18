@@ -23,11 +23,49 @@ $info    = $params->get('info_block_position', 0);
 $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associations'));
 
 ?>
-<div class="item-page<?php echo $this->pageclass_sfx; ?>" itemscope itemtype="https://schema.org/Article">
-	<meta itemprop="inLanguage" content="<?php echo ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language; ?>" />
-    <meta itemprop="author" content="SIWECOS.de" />
-    <meta itemprop="publisher" content="SIWECOS.de" />
-    <meta itemprop="datePublished" content=<?php echo JFactory::getDate($this->item->created_at)->toISO8601(); ?>" />
+<div class="item-page<?php echo $this->pageclass_sfx; ?>">
+    <script type="application/ld+json">
+        <?php
+            $richData = [
+                "@context" => "http://schema.org",
+                "@type" => "Article",
+                "mainEntityOfPage" => [
+                    "@type" => "WebPage",
+                    "@id" => JFactory::getURI()->toString()
+                ],
+                "inLanguage" => ($this->item->language === '*') ? JFactory::getConfig()->get('language') : $this->item->language,
+                "author" => "SIWECOS",
+                "name" => $this->item->title,
+                "headline" => $this->item->title,
+                "datePublished" => JFactory::getDate($this->item->created_at)->toISO8601(),
+                "dateModified" => JFactory::getDate($this->item->modified_at)->toISO8601(),
+                "publisher" => [
+                    "@type" => "Organization",
+                    "name" => "SIWECOS",
+                    "logo" => [
+                        "@type" => "ImageObject",
+                        "url" => JURI::base(true) . "/templates/siwecos/img/logo.png"
+                    ]
+                ]
+            ];
+
+            // Add images if present
+            if ($images->image_intro || $images->image_fulltext) {
+                $richData["image"] = [];
+
+                if ($images->image_intro) {
+                    $richData["image"][] = $images->image_intro;
+                }
+
+                if ($images->image_fulltext) {
+                    $richData["image"][] = $images->image_fulltext;
+                }
+            }
+
+            echo json_encode($richData);
+        ?>
+    </script>
+
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<div class="page-header">
 		<h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
@@ -52,10 +90,9 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
     <?php if ($params->get('access-view')) : ?>
     <?php echo JLayoutHelper::render('joomla.content.full_image', $this->item); ?>
     <?php endif; ?>
-	<?php if ($params->get('show_title')) : ?>
 	<div class="page-header">
 		<?php if ($params->get('show_title')) : ?>
-			<h2 itemprop="headline">
+			<h2>
 				<?php echo $this->escape($this->item->title); ?>
 			</h2>
             <?php endif; ?>
@@ -69,9 +106,6 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 			<span class="label label-warning"><?php echo JText::_('JEXPIRED'); ?></span>
 		<?php endif; ?>
 	</div>
-    <?php else: ?>
-        <meta itemprop="headline" content="<?php echo $this->escape($this->item->title); ?>" />
-    <?php endif; ?>
     <?php if (!$this->print) : ?>
 		<?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
 			<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
@@ -114,7 +148,7 @@ $assocParam = (JLanguageAssociations::isEnabled() && $params->get('show_associat
 	<?php if (isset ($this->item->toc)) :
 		echo $this->item->toc;
 	endif; ?>
-	<div itemprop="articleBody">
+	<div >
 		<?php echo $this->item->text; ?>
 	</div>
 
