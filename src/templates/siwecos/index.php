@@ -186,5 +186,20 @@ if (isset($this->_script['text/javascript']))
 		]
 	); ?>
 	</script>
+
+    <script type="application/ld+json">
+	<?php echo json_encode(
+		[
+            "@context" => "https://schema.org",
+            "@type" => "WebSite",
+            "url" => JURI::base(false),
+            "potentialAction" => [
+                "@type" => "SearchAction",
+                "target" => JURI::base(false) . "suche?searchword={search_term_string}",
+                "query-input" => "required name=search_term_string"
+			]
+		]
+	); ?>
+    </script>
 </body>
 </html>
