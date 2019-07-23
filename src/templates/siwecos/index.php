@@ -40,7 +40,8 @@ $cspRules = array(
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
-			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com"
+			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com",
+			"http://siegel.siwecos.de", "https://siegel.siwecos.de"
 	)
 );
 
