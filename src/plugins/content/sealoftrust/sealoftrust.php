@@ -107,15 +107,8 @@ class PlgContentSealoftrust extends JPlugin
 								return $lastScan->format($format);
 
 							case 'score':
-								extract(
-									$this->shortcodeAttributes(
-										array(
-											"precision" => 0
-										), $matches[2]
-									)
-								);
+								return $result->score;
 
-								return sprintf("%." . $precision . "f", round($result->score, $precision));
 							case 'url':
 								return htmlspecialchars($userDomain, ENT_QUOTES);
 
