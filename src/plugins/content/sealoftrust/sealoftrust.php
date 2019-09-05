@@ -156,19 +156,21 @@ class PlgContentSealoftrust extends JPlugin
 	/**
 	 * Calculate average score based on individual report scores
 	 *
-	 * @param $result
+	 * @param   stdClass  $result  result object
 	 *
-	 * @return float|int
+	 * @return float|integer
 	 */
 	protected function getScore($result)
 	{
-		if (empty($result->report) || count($result->report) === 0) {
+		if (empty($result->report) || count($result->report) === 0)
+		{
 			return 0;
 		}
 
 		$score = 0;
 
-		foreach ($result->report as $scan) {
+		foreach ($result->report as $scan)
+		{
 			$score += $scan->score;
 		}
 
