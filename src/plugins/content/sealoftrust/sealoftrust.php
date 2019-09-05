@@ -118,10 +118,11 @@ class PlgContentSealoftrust extends JPlugin
 								return sprintf("%." . $precision . "f", round($this->getScore($result), $precision));
 							case 'url':
 								return htmlspecialchars($userDomain, ENT_QUOTES);
+
 							default:
 								return $matches[0];
-							}
-							// @codingStandardsIgnoreEnd
+						}
+						// @codingStandardsIgnoreEnd
 					},
 					$text
 				);
