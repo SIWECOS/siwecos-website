@@ -44,7 +44,7 @@ class PlgContentSealoftrust extends JPlugin
 
 		// Get the domain's scan result
 		$client = JHttpFactory::getHttp();
-		$response = $client->get($domainscanURL . $userDomain);
+		$response = $client->get(str_replace("{domain}", $userDomain, $domainscanURL));
 
 		// Get the data
 		$result = '';
@@ -73,7 +73,7 @@ class PlgContentSealoftrust extends JPlugin
 				// Parse all siwecos shortcodes
 				$text = preg_replace_callback(
 					'/\[(last|score|url)\b(.*?)\]/',
-					function ($matches) use ($result, $dateFormat)
+					function ($matches) use ($result, $dateFormat, $userDomain)
 					{
 						// @codingStandardsIgnoreStart
 						switch ($matches[1])
@@ -89,8 +89,7 @@ class PlgContentSealoftrust extends JPlugin
 								);
 
 								$lastScan = new DateTime(
-									$result->{'lastScan'}->{'date'},
-									new DateTimeZone($result->{'lastScan'}->{'timezone'})
+									$result->{'finished_at'}
 								);
 
 								if ('' != $tz)
@@ -116,13 +115,13 @@ class PlgContentSealoftrust extends JPlugin
 									)
 								);
 
-								return sprintf("%." . $precision . "f", round($result->{'Score'}, $precision));
+								return sprintf("%." . $precision . "f", round($this->getScore($result), $precision));
 							case 'url':
-								return $result->{'domain'};
+								return htmlspecialchars($userDomain, ENT_QUOTES);
 							default:
 								return $matches[0];
-						}
-						// @codingStandardsIgnoreEnd
+							}
+							// @codingStandardsIgnoreEnd
 					},
 					$text
 				);
@@ -139,7 +138,7 @@ class PlgContentSealoftrust extends JPlugin
 				if ($class !== "")
 				{
 					$class = preg_replace(
-						"/%S/", floor($result->{'Score'} / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
+						"/%S/", floor($this->getScore($result) / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
 					);
 
 					return '<div class="' . $class . '">' . $text . '</div>';
@@ -151,6 +150,28 @@ class PlgContentSealoftrust extends JPlugin
 		);
 
 		return true;
+	}
+
+	/**
+	 * Calculate average score based on individual report scores
+	 *
+	 * @param $result
+	 *
+	 * @return float|int
+	 */
+	protected function getScore($result)
+	{
+		if (empty($result->report) || count($result->report) === 0) {
+			return 0;
+		}
+
+		$score = 0;
+
+		foreach ($result->report as $scan) {
+			$score += $scan->score;
+		}
+
+		return $score / count($result->report);
 	}
 
 	/**
