@@ -115,7 +115,7 @@ class PlgContentSealoftrust extends JPlugin
 									)
 								);
 
-								return sprintf("%." . $precision . "f", round($this->getScore($result), $precision));
+								return sprintf("%." . $precision . "f", round($result->score, $precision));
 							case 'url':
 								return htmlspecialchars($userDomain, ENT_QUOTES);
 
@@ -139,7 +139,7 @@ class PlgContentSealoftrust extends JPlugin
 				if ($class !== "")
 				{
 					$class = preg_replace(
-						"/%S/", floor($this->getScore($result) / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
+						"/%S/", floor($result->score / 10), preg_replace("/%s/", floor($result->{'Score'}), $class)
 					);
 
 					return '<div class="' . $class . '">' . $text . '</div>';
@@ -151,30 +151,6 @@ class PlgContentSealoftrust extends JPlugin
 		);
 
 		return true;
-	}
-
-	/**
-	 * Calculate average score based on individual report scores
-	 *
-	 * @param   stdClass  $result  result object
-	 *
-	 * @return float|integer
-	 */
-	protected function getScore($result)
-	{
-		if (empty($result->report) || count($result->report) === 0)
-		{
-			return 0;
-		}
-
-		$score = 0;
-
-		foreach ($result->report as $scan)
-		{
-			$score += $scan->score;
-		}
-
-		return $score / count($result->report);
 	}
 
 	/**
