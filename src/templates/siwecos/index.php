@@ -35,12 +35,13 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 $cspRules = array(
 	"default-src" => array("'self'"),
 	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://webstats.eco.de", "'sha256-H1Gdq95Qc4rkKQfUp4aatRKaZReh+HTnpBo04R1QIfA='"),
-	'connect-src' => array("'self'", "https://ca.siwecos.de", "https://bla.siwecos.de", "https://bla.staging.siwecos.de", "https://ca.staging.siwecos.de", "https://webstats.eco.de"),
+	'connect-src' => array("'self'", "https://ca.siwecos.de", "https://bla.siwecos.de", "https://api.staging.siwecos.de", "https://staging.siwecos.de", "https://webstats.eco.de"),
 	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
-			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com"
+			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com",
+			"http://siegel.siwecos.de", "https://siegel.siwecos.de"
 	)
 );
 
@@ -120,6 +121,10 @@ if (isset($this->_script['text/javascript']))
 		</div>
 	</header>
 
+	<?php if ($this->countModules('breadcrumbs')): ?>
+		<jdoc:include type="modules" name="breadcrumbs" style="html5" />
+	<?php endif; ?>
+
 	<div class="contentcontainer">
 		<main>
 			<?php if ($this->countModules('main-top')): ?>
@@ -168,5 +173,34 @@ if (isset($this->_script['text/javascript']))
 	</script>
 	<!-- End Matomo Code -->
 	<?php endif; ?>
+	<script type="application/ld+json">
+	<?php echo json_encode(
+		[
+		   "@context" => "https://schema.org",
+			"@type" => "Organization",
+			"name" => "SIWECOS",
+			"url" => JURI::base(false),
+			"logo" => [
+				"@type" => "ImageObject",
+				"url" => JURI::base(false) . "/templates/siwecos/img/logo.png"
+			]
+		]
+	); ?>
+	</script>
+
+    <script type="application/ld+json">
+	<?php echo json_encode(
+		[
+            "@context" => "https://schema.org",
+            "@type" => "WebSite",
+            "url" => JURI::base(false),
+            "potentialAction" => [
+                "@type" => "SearchAction",
+                "target" => JURI::base(false) . "suche?searchword={search_term_string}",
+                "query-input" => "required name=search_term_string"
+			]
+		]
+	); ?>
+    </script>
 </body>
 </html>

@@ -173,7 +173,7 @@ window.login_announce= function(data) {
     return;
   }
   if(data === null || data === false) {
-    box.classList.remove('accountbox--loggedoin');
+    box.classList.remove('accountbox--loggedon');
     box.classList.add('accountbox--loggedoff');
   } else {
     box.classList.remove('accountbox--loggedoff');
