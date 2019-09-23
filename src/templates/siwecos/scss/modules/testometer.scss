@@ -1,0 +1,35 @@
+@include critical(false) {
+  .testometer {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    -ms-flex-align: center;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    position: relative;
+    .testometer__scanometer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: rotate(-90deg);
+      circle {
+        stroke-width: 8px;
+        fill: transparent;
+        stroke-linecap: round;
+      }
+    }
+    .testometer__result {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
