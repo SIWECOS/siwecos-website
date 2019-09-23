@@ -116,32 +116,32 @@
                 border-bottom: 1px solid #E6E6E6;
                 line-height: 1.5rem ;
                 .accordionitem__heading {
-                  padding: 0.75rem 0 0.75rem 30px;
-                  display: block;
+                  padding: 0.75rem 0.75rem 0.75rem 30px;
+                  display: flex;
+                  justify-content: space-between;
                   width: 100%;
                   cursor: pointer;
-                  position: relative;
-                  &:after {
-                    display: block;
-                    position: absolute;
-                    right: 0;
-                    height: 1rem;
-                    top: calc(50% - 0.5rem);
-                    content: "Details einblenden";
-                    color: $lightgrey;
-                    font-size: 0.85rem;
+                  background: none;
+                  box-shadow: none;
+                  .testheading__title {
+                    display: flex;
+                    display: -ms-flexbox;
+                    align-items: center;
+                    -ms-flex-align: center;
+                    color: black;
+                    .testheading__icon {
+                      display: block;
+                      width: 16px;
+                      height: 16px;
+                      margin-right: 10px;
+                    }
                   }
-                  &:before {
-                    display: block;
-                    position: absolute;
-                    left: 0;
-                    height: 18px;
-                    width: 18px;
-                    top: calc(50% - 9px);
-                    content: "";
+                  .testheading__toggle {
+                    color: $darkgrey;
                   }
                 }
                 .accordionitem__content {
+                  display: none;
                   visibility: hidden;
                   overflow: hidden;
                   max-height: 1px;
@@ -164,13 +164,11 @@
                       }
                     }
                   }
+                  &.active {
+                    display: block;
+                  }
                 }
                 &.active {
-                  .accordionitem__heading {
-                    &:after {
-                      content: "Details ausblenden";
-                    }
-                  }
                   .accordionitem__content {
                     max-height: none;
                     visibility: visible;
@@ -225,11 +223,25 @@
     }
   }
 }
+
 @include critical(false) {
-  .scanresults .item .item__content .content__detail .detail__contentsection .contentsection__accordion .accordion__item .accordionitem__heading:before {
-    background: url('../img/icon_warning.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  .scanresults .item .item__content .content__detail .detail__contentsection .contentsection__accordion .accordion__item .accordionitem__heading {
+    .testheading__icon {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      &.testheading__icon--error {
+        background-image: url("../img/icon_error.svg");
+      }
+
+      &.testheading__icon--warning {
+        background-image: url("../img/icon_warning.svg");
+      }
+
+      &.testheading__icon--success {
+        background-image: url("../img/icon_success.svg");
+      }
+    }
   }
 }
