@@ -36,8 +36,7 @@ class PlgContentSiwecosapp extends JPlugin
 		}
 
 		$assets = array(
-			"spa/main/manifest.js",
-			"spa/main/vendor.js",
+			"spa/main/chunk-vendors.js",
 			"spa/main/app.js"
 		);
 
