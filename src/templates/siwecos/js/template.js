@@ -201,8 +201,8 @@ window.onscroll = function() {
 }
 
 window.logoutSpa= function () {
-  window.sessionStorage.removeItem("access_token");
-  window.localStorage.removeItem("access_token");
+  window.sessionStorage.removeItem("siwecos_token");
+  window.localStorage.removeItem("siwecos_token");
 
   window.login_announce(null);
 
@@ -210,8 +210,8 @@ window.logoutSpa= function () {
 };
 
 window.login_announce(
-  window.sessionStorage.getItem('access_token') !== null ||
-  window.localStorage.getItem('access_token') !== null
+  window.sessionStorage.getItem('siwecos_token') !== null ||
+  window.localStorage.getItem('siwecos_token') !== null
 );
 
 if(document.getElementById("accountbox__logoff")) {
