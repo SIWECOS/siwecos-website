@@ -130,6 +130,7 @@
                     -ms-flex-align: center;
                     color: black;
                     text-align: left;
+                    line-height: 1.3em;
                     .testheading__icon {
                       display: block;
                       width: 16px;
@@ -218,6 +219,20 @@
         .item__content {
           .content__overview {
             grid-template-columns: 1fr 1fr 1fr 1fr;
+          }
+
+          .content__detail {
+            .detail__contentsection {
+              .contentsection__accordion {
+                .accordion__item {
+                  .accordionitem__heading {
+                    .testheading__title {
+                      max-width: calc(100% - 120px);
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
