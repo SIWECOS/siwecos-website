@@ -115,6 +115,7 @@
               font-weight: 700;
             }
             .contentsection__accordion {
+              margin-bottom: 0.5rem;
               .accordion__item {
                 border-bottom: 1px solid #E6E6E6;
                 line-height: 1.5rem ;
@@ -142,7 +143,7 @@
                     }
                   }
                   .testheading__toggle {
-                    color: $darkgrey;
+                    color: $lightgrey;
                   }
                 }
                 .accordionitem__content {
@@ -180,6 +181,9 @@
                   }
                 }
               }
+            }
+            .scanner-jumplink {
+              font-size: .85rem;
             }
           }
         }
