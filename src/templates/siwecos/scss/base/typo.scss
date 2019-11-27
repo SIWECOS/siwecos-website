@@ -3,6 +3,8 @@
     font-family: $basefont;
     font-size: 13px;
     font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -204,6 +206,24 @@
 
   .btn-danger {
     background: $red !important;
+  }
+
+  button.link {
+    text-align: left;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    color: $lightgrey !important;
+    min-width: 0;
+    padding: 0;
+    line-height: 1.5rem;
+    &.link-error {
+      color: $danger !important;
+    }
+    &:hover,
+    &:focus {
+      background: transparent;
+    }
   }
 
   /* roboto-300 - latin */

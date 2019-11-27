@@ -28,7 +28,7 @@ matrix:
 
     - language: node_js
       stage: test
-      node_js: lts/*
+      node_js: "8"
       script:
         - npm install
         - gulp parse-template-scss
@@ -37,7 +37,7 @@ matrix:
 
     - language: node_js
       stage: deploy-staging
-      node_js: lts/*
+      node_js: "8"
       script:
         - npm install
         - gulp parse-template-scss
@@ -51,7 +51,7 @@ matrix:
 
     - language: node_js
       stage: deploy-live
-      node_js: lts/*
+      node_js: "8"
       script:
         - npm install
         - gulp parse-template-scss
