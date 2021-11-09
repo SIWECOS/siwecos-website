@@ -34,14 +34,14 @@ $criticalCss = file_get_contents(dirname(__FILE__) . "/css/critical.css");
 // Generate CSP
 $cspRules = array(
 	"default-src" => array("'self'"),
-	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://webstats.eco.de"),
-	'connect-src' => array("'self'", "https://api.siwecos.de", "https://api.staging.siwecos.de", "https://webstats.eco.de"),
+	'script-src' => array("'self'", "https://www.google.com/", "https://www.gstatic.com", "https://statistics.cms.garden"),
+	'connect-src' => array("'self'", "https://api.siwecos.de", "https://api.staging.siwecos.de", "https://statistics.cms.garden"),
 	'style-src' => array("'self'", "'sha256-" . base64_encode(hash("sha256", $criticalCss, true)) . "'"),
 	'frame-src' => array("'self'", "https://www.youtube.com/", "https://www.youtube-nocookie.com/", "https://www.google.com/"),
 	'img-src' => array(
 			"'self'", "data:", "https://img.youtube.com", "https://i1.ytimg.com",
 			"https://i.ytimg.com", "https://i9.ytimg.com", "https://s.ytimg.com",
-			"https://siegel.siwecos.de", "https://webstats.eco.de"
+			"https://siegel.siwecos.de", "https://statistics.cms.garden"
 	)
 );
 
@@ -157,8 +157,8 @@ if (isset($this->_script['text/javascript']))
     <link href="<?php echo 'templates/' . $this->template . '/css/template.css?v=' . md5(file_get_contents(dirname(__FILE__) . "/css/template.css")); ?>" rel="stylesheet" type="text/css" />
     <script async src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/template.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/template.js")); ?>"></script>
     <script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/matomo.js?v=<?php echo md5(file_get_contents(dirname(__FILE__) . "/js/matomo.js")); ?>"></script>
-    <script src="https://webstats.eco.de/piwik.js"></script>
-    <noscript><p><img src="https://webstats.eco.de/matomo.php?idsite=152&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+    <script src="https://statistics.cms.garden/matomo.js"></script>
+    <noscript><p><img src="https://statistics.cms.garden/matomo.php?idsite=152&amp;rec=1" style="border:0;" alt="" /></p></noscript>
     <script type="application/ld+json">
 	<?php echo json_encode(
             [
