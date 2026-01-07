@@ -1,5 +1,2 @@
-var _paq = window._paq || [];
-_paq.push(['setTrackerUrl', 'https://statistics.cms.garden/matomo.php']);
-_paq.push(['setSiteId', 3]);
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
+var _mtm = window._mtm = window._mtm || [];_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+(function(){var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];g.async=true; g.src='https://statistics.cms.garden/js/container_673MPywg.js'; s.parentNode.insertBefore(g,s);})();
